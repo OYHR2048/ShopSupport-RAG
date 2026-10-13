@@ -1,0 +1,34 @@
+[
+  {
+    "repository": "BAAI/bge-small-zh-v1.5",
+    "revision": "7999e1d3359715c523056ef9478215996d62a620",
+    "files": [
+      "modules.json",
+      "vocab.txt",
+      "model.safetensors",
+      "special_tokens_map.json",
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "config_sentence_transformers.json",
+      "sentence_bert_config.json",
+      "config.json",
+      "README.md",
+      "1_Pooling/config.json"
+    ],
+    "remote_code": false
+  },
+  {
+    "repository": "BAAI/bge-reranker-base",
+    "revision": "2cfc18c9415c912f9d8155881c133215df768a70",
+    "files": [
+      "model.safetensors",
+      "special_tokens_map.json",
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "sentencepiece.bpe.model",
+      "config.json",
+      "README.md"
+    ],
+    "remote_code": false
+  }
+]

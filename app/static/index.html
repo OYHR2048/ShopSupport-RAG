@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/static/favicon.svg"><title>演示商店 · Adaptive RAG 客服</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main>
+<header><div><p class="eyebrow">ADAPTIVE RAG · LOCAL DEMO</p><h1>演示商店客服</h1><p>问政策、查模拟订单，展开过程理解每一次决策。</p></div><button id="new">新对话</button></header>
+<section class="status"><strong id="mode">正在检查后端…</strong><div id="backends"></div><small id="warnings"></small></section>
+<div class="layout"><aside><h2>试着这样问</h2><div id="examples"></div><p>演示用户：u_demo</p><p>ORD10001：已发货耳机<br>ORD10002：已签收定制杯<br>ORD10003：未发货 T 恤</p><p>政策与订单均为演示用途。取消、退款仅修改本地模拟数据库。</p><p>演示模式使用规则、Hash embedding、BM25 和原文摘录。词面重排不是 Cross-Encoder。</p></aside>
+<section class="chat"><div id="messages" aria-live="polite"><article class="welcome"><h2>从一个问题开始</h2><p>你可以连续追问。每条回复都能查看引用与执行过程。</p></article></div>
+<form id="form"><label for="input">你的问题</label><div class="composer"><textarea id="input" rows="2" placeholder="例如：定制商品有质量问题能退吗？" required maxlength="4000"></textarea><button id="send">发送</button></div><small>Enter 发送，Shift + Enter 换行。确认操作会绑定当前会话。</small></form></section></div>
+<footer>本次新增浏览器界面 · FastAPI 同源后端 · 数据保存在本机</footer></main><script src="/static/chat.js?v=0.2"></script></body></html>

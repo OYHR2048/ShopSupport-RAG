@@ -1,0 +1,6994 @@
+{
+  "generated_at": "2026-10-12T03:33:17.699176+00:00",
+  "split": "test",
+  "backend": {
+    "embedding": "hash",
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "reranker": "lexical",
+    "reranker_model": "BAAI/bge-reranker-base",
+    "llm": "DemoLLMProvider",
+    "generation_evaluated": false,
+    "grader": "demo_lexical"
+  },
+  "parameters": {
+    "candidate_k": 8,
+    "vector_k": 5,
+    "rerank_n": 5,
+    "rrf_k": 60,
+    "max_hops": 3,
+    "cache": false,
+    "limit": 100
+  },
+  "corpus_sha256": "1dbe7672d5b7a104206e6ed0f6396a63bde4688a02b8b01e17cce2f8f865a459",
+  "dataset_sha256": "6a0666725a962e5346c5a7a3f9a2b6d2d9216d5ec7302cf8d5aad935d559360d",
+  "summary": {
+    "vector": {
+      "precision_at_1": 0.0625,
+      "recall_at_3": 0.0625,
+      "mrr": 0.0625,
+      "all_annotated_spans_retrieved": 0.0625,
+      "decision_correct": null,
+      "elapsed_ms": 3.0894,
+      "llm_calls": 0.0
+    },
+    "hybrid": {
+      "precision_at_1": 0.625,
+      "recall_at_3": 0.9688,
+      "mrr": 0.8021,
+      "all_annotated_spans_retrieved": 0.875,
+      "decision_correct": null,
+      "elapsed_ms": 3.6556,
+      "llm_calls": 0.0
+    },
+    "hybrid_rerank": {
+      "precision_at_1": 1.0,
+      "recall_at_3": 0.9688,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": 0.875,
+      "decision_correct": null,
+      "elapsed_ms": 3.8633,
+      "llm_calls": 0.0
+    },
+    "fixed_single": {
+      "precision_at_1": 1.0,
+      "recall_at_3": 0.9688,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": 0.875,
+      "decision_correct": 0.7222,
+      "elapsed_ms": 3.9317,
+      "llm_calls": 0.0
+    },
+    "adaptive": {
+      "precision_at_1": 1.0,
+      "recall_at_3": 0.9688,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": 0.875,
+      "decision_correct": 0.7222,
+      "elapsed_ms": 9.8389,
+      "llm_calls": 1.7778
+    }
+  },
+  "results": [
+    {
+      "id": "test01",
+      "query": "衣服已经洗涤，还可以无理由退货吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test01",
+        "split": "test",
+        "query": "衣服已经洗涤，还可以无理由退货吗？",
+        "relevant_doc_ids": [
+          "return_apparel",
+          "return_policy"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "已洗涤"
+          },
+          {
+            "document": "return_apparel",
+            "text": "不适用无理由"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "complaint_sla",
+        "invoice_vat",
+        "payment_methods",
+        "shipping_address",
+        "warranty_battery"
+      ],
+      "chunk_ids": [
+        "complaint_sla_f6fe97f8_03",
+        "invoice_vat_d600f1a3_02",
+        "payment_methods_82a85cb2_03",
+        "shipping_address_7242689a_03",
+        "warranty_battery_a9dec946_03"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 4.14,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.08849997539073229
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test01",
+      "query": "衣服已经洗涤，还可以无理由退货吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test01",
+        "split": "test",
+        "query": "衣服已经洗涤，还可以无理由退货吗？",
+        "relevant_doc_ids": [
+          "return_apparel",
+          "return_policy"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "已洗涤"
+          },
+          {
+            "document": "return_apparel",
+            "text": "不适用无理由"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_policy",
+        "complaint_sla",
+        "warranty_jewelry",
+        "invoice_vat",
+        "pickup_return"
+      ],
+      "chunk_ids": [
+        "return_policy_2f2e66b9_05",
+        "complaint_sla_f6fe97f8_03",
+        "warranty_jewelry_579c96b6_03",
+        "invoice_vat_d600f1a3_02",
+        "pickup_return_d230b6de_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 0.5,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.7,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06639998173341155
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test01",
+      "query": "衣服已经洗涤，还可以无理由退货吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test01",
+        "split": "test",
+        "query": "衣服已经洗涤，还可以无理由退货吗？",
+        "relevant_doc_ids": [
+          "return_apparel",
+          "return_policy"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "已洗涤"
+          },
+          {
+            "document": "return_apparel",
+            "text": "不适用无理由"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_policy",
+        "size_guide",
+        "pickup_return",
+        "warranty_jewelry",
+        "shipping_address"
+      ],
+      "chunk_ids": [
+        "return_policy_2f2e66b9_05",
+        "size_guide_d5cd5f47_02",
+        "pickup_return_d230b6de_03",
+        "warranty_jewelry_579c96b6_03",
+        "shipping_address_7242689a_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 0.5,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 4.04,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.063000014051795
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05959998816251755
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test01",
+      "query": "衣服已经洗涤，还可以无理由退货吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test01",
+        "split": "test",
+        "query": "衣服已经洗涤，还可以无理由退货吗？",
+        "relevant_doc_ids": [
+          "return_apparel",
+          "return_policy"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "已洗涤"
+          },
+          {
+            "document": "return_apparel",
+            "text": "不适用无理由"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_policy",
+        "size_guide",
+        "pickup_return",
+        "warranty_jewelry",
+        "shipping_address"
+      ],
+      "chunk_ids": [
+        "return_policy_2f2e66b9_05",
+        "size_guide_d5cd5f47_02",
+        "pickup_return_d230b6de_03",
+        "warranty_jewelry_579c96b6_03",
+        "shipping_address_7242689a_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 0.5,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.95,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06180000491440296
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05170004442334175
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "衣服已经洗涤，还可以无理由退货吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "衣服",
+            "rationale": "demo_lexical_coverage=0.75;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test01",
+      "query": "衣服已经洗涤，还可以无理由退货吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test01",
+        "split": "test",
+        "query": "衣服已经洗涤，还可以无理由退货吗？",
+        "relevant_doc_ids": [
+          "return_apparel",
+          "return_policy"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "已洗涤"
+          },
+          {
+            "document": "return_apparel",
+            "text": "不适用无理由"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_policy",
+        "size_guide",
+        "pickup_return",
+        "warranty_jewelry",
+        "shipping_address"
+      ],
+      "chunk_ids": [
+        "return_policy_2f2e66b9_05",
+        "size_guide_d5cd5f47_02",
+        "pickup_return_d230b6de_03",
+        "warranty_jewelry_579c96b6_03",
+        "shipping_address_7242689a_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 0.5,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.26,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06479996955022216
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.046200002543628216
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "衣服已经洗涤，还可以无理由退货吗？"
+          ],
+          "chunk_ids": [
+            "return_policy_2f2e66b9_05",
+            "size_guide_d5cd5f47_02",
+            "pickup_return_d230b6de_03",
+            "warranty_jewelry_579c96b6_03",
+            "shipping_address_7242689a_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "衣服",
+            "rationale": "demo_lexical_coverage=0.75;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test02",
+      "query": "同款衣服换尺码需要补差价吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test02",
+        "split": "test",
+        "query": "同款衣服换尺码需要补差价吗？",
+        "relevant_doc_ids": [
+          "return_apparel"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "同款换尺码不补差价"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "install_appliance",
+        "shipping",
+        "return_custom",
+        "cross_border",
+        "promo_stacking"
+      ],
+      "chunk_ids": [
+        "install_appliance_ff51ceed_02",
+        "shipping_6c5f3232_04",
+        "return_custom_d31491b4_01",
+        "cross_border_60f6605a_03",
+        "promo_stacking_a3820716_03"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.88,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06890000076964498
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test02",
+      "query": "同款衣服换尺码需要补差价吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test02",
+        "split": "test",
+        "query": "同款衣服换尺码需要补差价吗？",
+        "relevant_doc_ids": [
+          "return_apparel"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "同款换尺码不补差价"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_apparel",
+        "install_appliance",
+        "price_protect",
+        "shipping",
+        "exchange_size"
+      ],
+      "chunk_ids": [
+        "return_apparel_bef262ac_03",
+        "install_appliance_ff51ceed_02",
+        "price_protect_f0bf249d_01",
+        "shipping_6c5f3232_04",
+        "exchange_size_216f0802_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.51,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06569997640326619
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test02",
+      "query": "同款衣服换尺码需要补差价吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test02",
+        "split": "test",
+        "query": "同款衣服换尺码需要补差价吗？",
+        "relevant_doc_ids": [
+          "return_apparel"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "同款换尺码不补差价"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_apparel",
+        "price_protect",
+        "cross_border",
+        "install_appliance",
+        "exchange_size"
+      ],
+      "chunk_ids": [
+        "return_apparel_bef262ac_03",
+        "price_protect_f0bf249d_01",
+        "cross_border_60f6605a_03",
+        "install_appliance_ff51ceed_02",
+        "exchange_size_216f0802_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 4.05,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06410002242773771
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05169998621568084
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test02",
+      "query": "同款衣服换尺码需要补差价吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test02",
+        "split": "test",
+        "query": "同款衣服换尺码需要补差价吗？",
+        "relevant_doc_ids": [
+          "return_apparel"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "同款换尺码不补差价"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_apparel",
+        "price_protect",
+        "cross_border",
+        "install_appliance",
+        "exchange_size"
+      ],
+      "chunk_ids": [
+        "return_apparel_bef262ac_03",
+        "price_protect_f0bf249d_01",
+        "cross_border_60f6605a_03",
+        "install_appliance_ff51ceed_02",
+        "exchange_size_216f0802_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.08,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07090001599863172
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04600000102072954
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "同款衣服换尺码需要补差价吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "衣服",
+            "rationale": "demo_lexical_coverage=0.75;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test02",
+      "query": "同款衣服换尺码需要补差价吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test02",
+        "split": "test",
+        "query": "同款衣服换尺码需要补差价吗？",
+        "relevant_doc_ids": [
+          "return_apparel"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_apparel",
+            "text": "同款换尺码不补差价"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_apparel",
+        "price_protect",
+        "cross_border",
+        "install_appliance",
+        "exchange_size"
+      ],
+      "chunk_ids": [
+        "return_apparel_bef262ac_03",
+        "price_protect_f0bf249d_01",
+        "cross_border_60f6605a_03",
+        "install_appliance_ff51ceed_02",
+        "exchange_size_216f0802_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.86,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06259995279833674
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04870002157986164
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "同款衣服换尺码需要补差价吗？"
+          ],
+          "chunk_ids": [
+            "return_apparel_bef262ac_03",
+            "price_protect_f0bf249d_01",
+            "cross_border_60f6605a_03",
+            "install_appliance_ff51ceed_02",
+            "exchange_size_216f0802_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "衣服",
+            "rationale": "demo_lexical_coverage=0.75;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test03",
+      "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+      "method": "vector",
+      "gold": {
+        "id": "test03",
+        "split": "test",
+        "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+        "relevant_doc_ids": [
+          "shipping_remote"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_remote",
+            "text": "不叠加，取较高者"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "membership_plus",
+        "gift_card",
+        "payment_methods",
+        "repair_onsite",
+        "warranty_jewelry"
+      ],
+      "chunk_ids": [
+        "membership_plus_ab644d62_01",
+        "gift_card_25ceb666_03",
+        "payment_methods_82a85cb2_01",
+        "repair_onsite_ede3d888_03",
+        "warranty_jewelry_579c96b6_03"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.81,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.056699966080486774
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test03",
+      "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test03",
+        "split": "test",
+        "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+        "relevant_doc_ids": [
+          "shipping_remote"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_remote",
+            "text": "不叠加，取较高者"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "membership_plus",
+        "shipping_remote",
+        "gift_card",
+        "pickup_return",
+        "payment_methods"
+      ],
+      "chunk_ids": [
+        "membership_plus_ab644d62_01",
+        "shipping_remote_104aa5d1_01",
+        "gift_card_25ceb666_03",
+        "pickup_return_d230b6de_03",
+        "payment_methods_82a85cb2_01"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 1.0,
+      "mrr": 0.5,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.63,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.051600043661892414
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test03",
+      "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test03",
+        "split": "test",
+        "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+        "relevant_doc_ids": [
+          "shipping_remote"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_remote",
+            "text": "不叠加，取较高者"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "shipping_remote",
+        "membership_plus",
+        "coupons",
+        "pickup_return",
+        "payment_methods"
+      ],
+      "chunk_ids": [
+        "shipping_remote_104aa5d1_01",
+        "membership_plus_ab644d62_01",
+        "coupons_2d68704d_02",
+        "pickup_return_d230b6de_03",
+        "payment_methods_82a85cb2_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 4.14,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.08829997386783361
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04900002386420965
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test03",
+      "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test03",
+        "split": "test",
+        "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+        "relevant_doc_ids": [
+          "shipping_remote"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_remote",
+            "text": "不叠加，取较高者"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "shipping_remote",
+        "membership_plus",
+        "coupons",
+        "pickup_return",
+        "payment_methods"
+      ],
+      "chunk_ids": [
+        "shipping_remote_104aa5d1_01",
+        "membership_plus_ab644d62_01",
+        "coupons_2d68704d_02",
+        "pickup_return_d230b6de_03",
+        "payment_methods_82a85cb2_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 4.0,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0591999851167202
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.044899992644786835
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "岛屿费和偏远费同时出现，是相加还是取较高者？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "出现 相加 还是",
+            "rationale": "demo_lexical_coverage=0.62;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "single_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test03",
+      "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test03",
+        "split": "test",
+        "query": "岛屿费和偏远费同时出现，是相加还是取较高者？",
+        "relevant_doc_ids": [
+          "shipping_remote"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_remote",
+            "text": "不叠加，取较高者"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "shipping_remote",
+        "membership_plus",
+        "coupons",
+        "pickup_return",
+        "payment_methods",
+        "account_security",
+        "shipping_cod"
+      ],
+      "chunk_ids": [
+        "shipping_remote_104aa5d1_01",
+        "membership_plus_ab644d62_01",
+        "coupons_2d68704d_02",
+        "pickup_return_d230b6de_03",
+        "payment_methods_82a85cb2_02",
+        "account_security_afb16737_03",
+        "account_security_afb16737_00",
+        "account_security_afb16737_02",
+        "payment_methods_82a85cb2_01",
+        "shipping_cod_9a3c8717_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 18.74,
+      "llm_calls": 3,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.052099989261478186
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.050200033001601696
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.04830001853406429
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04579999949783087
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07810001261532307
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.042599975131452084
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05830003647133708
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.03649998689070344
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.052099989261478186
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.03360002301633358
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "岛屿费和偏远费同时出现，是相加还是取较高者？"
+          ],
+          "chunk_ids": [
+            "shipping_remote_104aa5d1_01",
+            "membership_plus_ab644d62_01",
+            "coupons_2d68704d_02",
+            "pickup_return_d230b6de_03",
+            "payment_methods_82a85cb2_02"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "出现 相加 还是",
+            "rationale": "demo_lexical_coverage=0.62;不是语义裁判"
+          }
+        },
+        {
+          "hop": 2,
+          "queries": [
+            "岛屿费和偏远费同时出现，是相加还是取较高者？",
+            "出现 相加 还是"
+          ],
+          "chunk_ids": [
+            "shipping_remote_104aa5d1_01",
+            "membership_plus_ab644d62_01",
+            "coupons_2d68704d_02",
+            "pickup_return_d230b6de_03",
+            "payment_methods_82a85cb2_02",
+            "account_security_afb16737_03",
+            "account_security_afb16737_00",
+            "account_security_afb16737_02",
+            "payment_methods_82a85cb2_01",
+            "shipping_cod_9a3c8717_02"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "出现 相加 还是",
+            "rationale": "demo_lexical_coverage=0.62;不是语义裁判"
+          }
+        },
+        {
+          "hop": 3,
+          "queries": [
+            "岛屿费和偏远费同时出现，是相加还是取较高者？",
+            "出现 相加 还是"
+          ],
+          "chunk_ids": [
+            "shipping_remote_104aa5d1_01",
+            "membership_plus_ab644d62_01",
+            "coupons_2d68704d_02",
+            "pickup_return_d230b6de_03",
+            "payment_methods_82a85cb2_02",
+            "account_security_afb16737_03",
+            "account_security_afb16737_00",
+            "account_security_afb16737_02",
+            "payment_methods_82a85cb2_01",
+            "shipping_cod_9a3c8717_02"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "出现 相加 还是",
+            "rationale": "demo_lexical_coverage=0.62;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "max_hops_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test04",
+      "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+      "method": "vector",
+      "gold": {
+        "id": "test04",
+        "split": "test",
+        "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+        "relevant_doc_ids": [
+          "invoice_vat"
+        ],
+        "evidence_spans": [
+          {
+            "document": "invoice_vat",
+            "text": "需在发货前填写公司名称"
+          },
+          {
+            "document": "invoice_vat",
+            "text": "确认收货后 5 个工作日"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "coupons",
+        "shipping_address",
+        "return_custom",
+        "account_security",
+        "shipping_remote"
+      ],
+      "chunk_ids": [
+        "coupons_2d68704d_00",
+        "shipping_address_7242689a_01",
+        "return_custom_d31491b4_00",
+        "account_security_afb16737_00",
+        "shipping_remote_104aa5d1_00"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.9,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.044899992644786835
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test04",
+      "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test04",
+        "split": "test",
+        "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+        "relevant_doc_ids": [
+          "invoice_vat"
+        ],
+        "evidence_spans": [
+          {
+            "document": "invoice_vat",
+            "text": "需在发货前填写公司名称"
+          },
+          {
+            "document": "invoice_vat",
+            "text": "确认收货后 5 个工作日"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "invoice_vat",
+        "coupons",
+        "faq",
+        "shipping_address",
+        "refund_timeline"
+      ],
+      "chunk_ids": [
+        "invoice_vat_d600f1a3_01",
+        "coupons_2d68704d_00",
+        "faq_1021b2da_02",
+        "shipping_address_7242689a_01",
+        "refund_timeline_dbf0b0cb_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.66,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.04850002005696297
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test04",
+      "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test04",
+        "split": "test",
+        "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+        "relevant_doc_ids": [
+          "invoice_vat"
+        ],
+        "evidence_spans": [
+          {
+            "document": "invoice_vat",
+            "text": "需在发货前填写公司名称"
+          },
+          {
+            "document": "invoice_vat",
+            "text": "确认收货后 5 个工作日"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "invoice_vat",
+        "faq",
+        "refund_timeline",
+        "shipping_remote",
+        "account_security"
+      ],
+      "chunk_ids": [
+        "invoice_vat_d600f1a3_01",
+        "faq_1021b2da_02",
+        "refund_timeline_dbf0b0cb_02",
+        "shipping_remote_104aa5d1_02",
+        "account_security_afb16737_00"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.86,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06049999501556158
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.06049999501556158
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test04",
+      "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test04",
+        "split": "test",
+        "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+        "relevant_doc_ids": [
+          "invoice_vat"
+        ],
+        "evidence_spans": [
+          {
+            "document": "invoice_vat",
+            "text": "需在发货前填写公司名称"
+          },
+          {
+            "document": "invoice_vat",
+            "text": "确认收货后 5 个工作日"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "invoice_vat",
+        "faq",
+        "refund_timeline",
+        "shipping_remote",
+        "account_security"
+      ],
+      "chunk_ids": [
+        "invoice_vat_d600f1a3_01",
+        "faq_1021b2da_02",
+        "refund_timeline_dbf0b0cb_02",
+        "shipping_remote_104aa5d1_02",
+        "account_security_afb16737_00"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 4.15,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06389996269717813
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05280005279928446
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "增值税专用发票需在什么时候填写公司资料，多久开具？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "专用发票 增值税 多久",
+            "rationale": "demo_lexical_coverage=0.62;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "single_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test04",
+      "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test04",
+        "split": "test",
+        "query": "增值税专用发票需在什么时候填写公司资料，多久开具？",
+        "relevant_doc_ids": [
+          "invoice_vat"
+        ],
+        "evidence_spans": [
+          {
+            "document": "invoice_vat",
+            "text": "需在发货前填写公司名称"
+          },
+          {
+            "document": "invoice_vat",
+            "text": "确认收货后 5 个工作日"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "invoice_vat",
+        "faq",
+        "refund_timeline",
+        "shipping_remote",
+        "account_security",
+        "membership_plus",
+        "shipping"
+      ],
+      "chunk_ids": [
+        "invoice_vat_d600f1a3_01",
+        "faq_1021b2da_02",
+        "refund_timeline_dbf0b0cb_02",
+        "shipping_remote_104aa5d1_02",
+        "account_security_afb16737_00",
+        "account_security_afb16737_03",
+        "membership_plus_ab644d62_01",
+        "shipping_6c5f3232_03",
+        "account_security_afb16737_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 18.67,
+      "llm_calls": 3,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05989999044686556
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.047900015488266945
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05139998393133283
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05339999916031957
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0648999703116715
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.043899985030293465
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.052200048230588436
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04369998350739479
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.054100004490464926
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04060001811012626
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "增值税专用发票需在什么时候填写公司资料，多久开具？"
+          ],
+          "chunk_ids": [
+            "invoice_vat_d600f1a3_01",
+            "faq_1021b2da_02",
+            "refund_timeline_dbf0b0cb_02",
+            "shipping_remote_104aa5d1_02",
+            "account_security_afb16737_00"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "专用发票 增值税 多久",
+            "rationale": "demo_lexical_coverage=0.62;不是语义裁判"
+          }
+        },
+        {
+          "hop": 2,
+          "queries": [
+            "增值税专用发票需在什么时候填写公司资料，多久开具？",
+            "专用发票 增值税 多久"
+          ],
+          "chunk_ids": [
+            "invoice_vat_d600f1a3_01",
+            "faq_1021b2da_02",
+            "refund_timeline_dbf0b0cb_02",
+            "shipping_remote_104aa5d1_02",
+            "account_security_afb16737_00",
+            "account_security_afb16737_03",
+            "membership_plus_ab644d62_01",
+            "shipping_6c5f3232_03",
+            "account_security_afb16737_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "专用发票 增值税 多久",
+            "rationale": "demo_lexical_coverage=0.62;不是语义裁判"
+          }
+        },
+        {
+          "hop": 3,
+          "queries": [
+            "增值税专用发票需在什么时候填写公司资料，多久开具？",
+            "专用发票 增值税 多久"
+          ],
+          "chunk_ids": [
+            "invoice_vat_d600f1a3_01",
+            "faq_1021b2da_02",
+            "refund_timeline_dbf0b0cb_02",
+            "shipping_remote_104aa5d1_02",
+            "account_security_afb16737_00",
+            "account_security_afb16737_03",
+            "membership_plus_ab644d62_01",
+            "shipping_6c5f3232_03",
+            "account_security_afb16737_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "专用发票 增值税 多久",
+            "rationale": "demo_lexical_coverage=0.62;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "max_hops_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test05",
+      "query": "充电电池保修多少个月或者多少次充放电？",
+      "method": "vector",
+      "gold": {
+        "id": "test05",
+        "split": "test",
+        "query": "充电电池保修多少个月或者多少次充放电？",
+        "relevant_doc_ids": [
+          "warranty_battery"
+        ],
+        "evidence_spans": [
+          {
+            "document": "warranty_battery",
+            "text": "保修 6 个月或充放电 300 次"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "faq",
+        "exchange_size",
+        "warranty",
+        "membership_plus",
+        "coupons"
+      ],
+      "chunk_ids": [
+        "faq_1021b2da_03",
+        "exchange_size_216f0802_03",
+        "warranty_1f88fd5f_01",
+        "membership_plus_ab644d62_01",
+        "coupons_2d68704d_01"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.69,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06559997564181685
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test05",
+      "query": "充电电池保修多少个月或者多少次充放电？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test05",
+        "split": "test",
+        "query": "充电电池保修多少个月或者多少次充放电？",
+        "relevant_doc_ids": [
+          "warranty_battery"
+        ],
+        "evidence_spans": [
+          {
+            "document": "warranty_battery",
+            "text": "保修 6 个月或充放电 300 次"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "warranty",
+        "warranty_battery",
+        "faq",
+        "exchange_size",
+        "warranty_jewelry"
+      ],
+      "chunk_ids": [
+        "warranty_1f88fd5f_01",
+        "warranty_battery_a9dec946_01",
+        "faq_1021b2da_03",
+        "exchange_size_216f0802_03",
+        "warranty_jewelry_579c96b6_01"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 1.0,
+      "mrr": 0.5,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.75,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06510003004223108
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test05",
+      "query": "充电电池保修多少个月或者多少次充放电？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test05",
+        "split": "test",
+        "query": "充电电池保修多少个月或者多少次充放电？",
+        "relevant_doc_ids": [
+          "warranty_battery"
+        ],
+        "evidence_spans": [
+          {
+            "document": "warranty_battery",
+            "text": "保修 6 个月或充放电 300 次"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "warranty_battery",
+        "warranty",
+        "warranty_jewelry",
+        "gift_card",
+        "points_expiry"
+      ],
+      "chunk_ids": [
+        "warranty_battery_a9dec946_01",
+        "warranty_1f88fd5f_01",
+        "warranty_jewelry_579c96b6_01",
+        "gift_card_25ceb666_01",
+        "points_expiry_52095870_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 4.02,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.076299998909235
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04989997250959277
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test05",
+      "query": "充电电池保修多少个月或者多少次充放电？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test05",
+        "split": "test",
+        "query": "充电电池保修多少个月或者多少次充放电？",
+        "relevant_doc_ids": [
+          "warranty_battery"
+        ],
+        "evidence_spans": [
+          {
+            "document": "warranty_battery",
+            "text": "保修 6 个月或充放电 300 次"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "warranty_battery",
+        "warranty",
+        "warranty_jewelry",
+        "gift_card",
+        "points_expiry"
+      ],
+      "chunk_ids": [
+        "warranty_battery_a9dec946_01",
+        "warranty_1f88fd5f_01",
+        "warranty_jewelry_579c96b6_01",
+        "gift_card_25ceb666_01",
+        "points_expiry_52095870_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.77,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06709998706355691
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.042599975131452084
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "充电电池保修多少个月或者多少次充放电？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "或者",
+            "rationale": "demo_lexical_coverage=0.75;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test05",
+      "query": "充电电池保修多少个月或者多少次充放电？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test05",
+        "split": "test",
+        "query": "充电电池保修多少个月或者多少次充放电？",
+        "relevant_doc_ids": [
+          "warranty_battery"
+        ],
+        "evidence_spans": [
+          {
+            "document": "warranty_battery",
+            "text": "保修 6 个月或充放电 300 次"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "warranty_battery",
+        "warranty",
+        "warranty_jewelry",
+        "gift_card",
+        "points_expiry"
+      ],
+      "chunk_ids": [
+        "warranty_battery_a9dec946_01",
+        "warranty_1f88fd5f_01",
+        "warranty_jewelry_579c96b6_01",
+        "gift_card_25ceb666_01",
+        "points_expiry_52095870_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.96,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.049900030717253685
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.048399961087852716
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "充电电池保修多少个月或者多少次充放电？"
+          ],
+          "chunk_ids": [
+            "warranty_battery_a9dec946_01",
+            "warranty_1f88fd5f_01",
+            "warranty_jewelry_579c96b6_01",
+            "gift_card_25ceb666_01",
+            "points_expiry_52095870_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "或者",
+            "rationale": "demo_lexical_coverage=0.75;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test06",
+      "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+      "method": "vector",
+      "gold": {
+        "id": "test06",
+        "split": "test",
+        "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+        "relevant_doc_ids": [
+          "return_food"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_food",
+            "text": "离场后质量问题需提供开箱视频"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "refund_timeline",
+        "promo_stacking",
+        "packaging_gift",
+        "account_security",
+        "return_policy"
+      ],
+      "chunk_ids": [
+        "refund_timeline_dbf0b0cb_02",
+        "promo_stacking_a3820716_01",
+        "packaging_gift_89a65515_03",
+        "account_security_afb16737_03",
+        "return_policy_2f2e66b9_02"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.27,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06779999239370227
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test06",
+      "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test06",
+        "split": "test",
+        "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+        "relevant_doc_ids": [
+          "return_food"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_food",
+            "text": "离场后质量问题需提供开箱视频"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_food",
+        "refund_timeline",
+        "return_electronics",
+        "promo_stacking",
+        "return_policy"
+      ],
+      "chunk_ids": [
+        "return_food_287bf71d_01",
+        "refund_timeline_dbf0b0cb_02",
+        "return_electronics_ecb5e89c_03",
+        "promo_stacking_a3820716_01",
+        "return_policy_2f2e66b9_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.86,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.08229998638853431
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test06",
+      "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test06",
+        "split": "test",
+        "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+        "relevant_doc_ids": [
+          "return_food"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_food",
+            "text": "离场后质量问题需提供开箱视频"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_food",
+        "return_policy",
+        "return_electronics",
+        "refund_timeline",
+        "packaging_gift"
+      ],
+      "chunk_ids": [
+        "return_food_287bf71d_01",
+        "return_policy_2f2e66b9_03",
+        "return_electronics_ecb5e89c_03",
+        "refund_timeline_dbf0b0cb_02",
+        "packaging_gift_89a65515_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.87,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07370003731921315
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.057699973694980145
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test06",
+      "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test06",
+        "split": "test",
+        "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+        "relevant_doc_ids": [
+          "return_food"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_food",
+            "text": "离场后质量问题需提供开箱视频"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_food",
+        "return_policy",
+        "return_electronics",
+        "refund_timeline",
+        "packaging_gift"
+      ],
+      "chunk_ids": [
+        "return_food_287bf71d_01",
+        "return_policy_2f2e66b9_03",
+        "return_electronics_ecb5e89c_03",
+        "refund_timeline_dbf0b0cb_02",
+        "packaging_gift_89a65515_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.23,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05339999916031957
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05589995998889208
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "冷链生鲜离场后有质量问题需要提供什么凭证？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "",
+            "rationale": "demo_lexical_coverage=1.00;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test06",
+      "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test06",
+        "split": "test",
+        "query": "冷链生鲜离场后有质量问题需要提供什么凭证？",
+        "relevant_doc_ids": [
+          "return_food"
+        ],
+        "evidence_spans": [
+          {
+            "document": "return_food",
+            "text": "离场后质量问题需提供开箱视频"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "return_food",
+        "return_policy",
+        "return_electronics",
+        "refund_timeline",
+        "packaging_gift"
+      ],
+      "chunk_ids": [
+        "return_food_287bf71d_01",
+        "return_policy_2f2e66b9_03",
+        "return_electronics_ecb5e89c_03",
+        "refund_timeline_dbf0b0cb_02",
+        "packaging_gift_89a65515_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.09,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07960002403706312
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05099998088553548
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "冷链生鲜离场后有质量问题需要提供什么凭证？"
+          ],
+          "chunk_ids": [
+            "return_food_287bf71d_01",
+            "return_policy_2f2e66b9_03",
+            "return_electronics_ecb5e89c_03",
+            "refund_timeline_dbf0b0cb_02",
+            "packaging_gift_89a65515_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "",
+            "rationale": "demo_lexical_coverage=1.00;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test07",
+      "query": "已揽收的包裹能否改派到其他省份？",
+      "method": "vector",
+      "gold": {
+        "id": "test07",
+        "split": "test",
+        "query": "已揽收的包裹能否改派到其他省份？",
+        "relevant_doc_ids": [
+          "shipping_address"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_address",
+            "text": "不能跨省"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "invoice_vat",
+        "live_presale",
+        "return_custom",
+        "points_expiry"
+      ],
+      "chunk_ids": [
+        "invoice_vat_d600f1a3_02",
+        "live_presale_2eba858e_01",
+        "return_custom_d31491b4_00",
+        "invoice_vat_d600f1a3_00",
+        "points_expiry_52095870_00"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.96,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06320001557469368
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test07",
+      "query": "已揽收的包裹能否改派到其他省份？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test07",
+        "split": "test",
+        "query": "已揽收的包裹能否改派到其他省份？",
+        "relevant_doc_ids": [
+          "shipping_address"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_address",
+            "text": "不能跨省"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "shipping_address",
+        "invoice_vat",
+        "shipping",
+        "live_presale",
+        "privacy_cs"
+      ],
+      "chunk_ids": [
+        "shipping_address_7242689a_02",
+        "invoice_vat_d600f1a3_02",
+        "shipping_6c5f3232_01",
+        "live_presale_2eba858e_01",
+        "privacy_cs_0c4fad81_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.58,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06400002166628838
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test07",
+      "query": "已揽收的包裹能否改派到其他省份？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test07",
+        "split": "test",
+        "query": "已揽收的包裹能否改派到其他省份？",
+        "relevant_doc_ids": [
+          "shipping_address"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_address",
+            "text": "不能跨省"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "shipping_address",
+        "shipping",
+        "privacy_cs",
+        "invoice_vat",
+        "return_apparel"
+      ],
+      "chunk_ids": [
+        "shipping_address_7242689a_02",
+        "shipping_6c5f3232_01",
+        "privacy_cs_0c4fad81_02",
+        "invoice_vat_d600f1a3_02",
+        "return_apparel_bef262ac_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.84,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05390000296756625
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.06120000034570694
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test07",
+      "query": "已揽收的包裹能否改派到其他省份？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test07",
+        "split": "test",
+        "query": "已揽收的包裹能否改派到其他省份？",
+        "relevant_doc_ids": [
+          "shipping_address"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_address",
+            "text": "不能跨省"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "shipping_address",
+        "shipping",
+        "privacy_cs",
+        "invoice_vat",
+        "return_apparel"
+      ],
+      "chunk_ids": [
+        "shipping_address_7242689a_02",
+        "shipping_6c5f3232_01",
+        "privacy_cs_0c4fad81_02",
+        "invoice_vat_d600f1a3_02",
+        "return_apparel_bef262ac_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 3.86,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.057500030379742384
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05070003680884838
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "已揽收的包裹能否改派到其他省份？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "包裹 已揽收 能否",
+            "rationale": "demo_lexical_coverage=0.50;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "single_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test07",
+      "query": "已揽收的包裹能否改派到其他省份？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test07",
+        "split": "test",
+        "query": "已揽收的包裹能否改派到其他省份？",
+        "relevant_doc_ids": [
+          "shipping_address"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_address",
+            "text": "不能跨省"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "shipping_address",
+        "shipping",
+        "privacy_cs",
+        "invoice_vat",
+        "return_apparel",
+        "account_security",
+        "packaging_gift",
+        "complaint_sla"
+      ],
+      "chunk_ids": [
+        "shipping_address_7242689a_02",
+        "shipping_6c5f3232_01",
+        "privacy_cs_0c4fad81_02",
+        "invoice_vat_d600f1a3_02",
+        "return_apparel_bef262ac_03",
+        "account_security_afb16737_03",
+        "packaging_gift_89a65515_03",
+        "account_security_afb16737_02",
+        "complaint_sla_f6fe97f8_03",
+        "account_security_afb16737_00"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 19.2,
+      "llm_calls": 3,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0523999915458262
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.06319995736703277
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0619000056758523
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04970002919435501
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05829997826367617
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.0439999857917428
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.08890003664419055
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04900002386420965
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06819999543949962
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.037299992982298136
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "已揽收的包裹能否改派到其他省份？"
+          ],
+          "chunk_ids": [
+            "shipping_address_7242689a_02",
+            "shipping_6c5f3232_01",
+            "privacy_cs_0c4fad81_02",
+            "invoice_vat_d600f1a3_02",
+            "return_apparel_bef262ac_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "包裹 已揽收 能否",
+            "rationale": "demo_lexical_coverage=0.50;不是语义裁判"
+          }
+        },
+        {
+          "hop": 2,
+          "queries": [
+            "已揽收的包裹能否改派到其他省份？",
+            "包裹 已揽收 能否"
+          ],
+          "chunk_ids": [
+            "shipping_address_7242689a_02",
+            "shipping_6c5f3232_01",
+            "privacy_cs_0c4fad81_02",
+            "invoice_vat_d600f1a3_02",
+            "return_apparel_bef262ac_03",
+            "account_security_afb16737_03",
+            "packaging_gift_89a65515_03",
+            "account_security_afb16737_02",
+            "complaint_sla_f6fe97f8_03",
+            "account_security_afb16737_00"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "包裹 已揽收 能否",
+            "rationale": "demo_lexical_coverage=0.50;不是语义裁判"
+          }
+        },
+        {
+          "hop": 3,
+          "queries": [
+            "已揽收的包裹能否改派到其他省份？",
+            "包裹 已揽收 能否"
+          ],
+          "chunk_ids": [
+            "shipping_address_7242689a_02",
+            "shipping_6c5f3232_01",
+            "privacy_cs_0c4fad81_02",
+            "invoice_vat_d600f1a3_02",
+            "return_apparel_bef262ac_03",
+            "account_security_afb16737_03",
+            "packaging_gift_89a65515_03",
+            "account_security_afb16737_02",
+            "complaint_sla_f6fe97f8_03",
+            "account_security_afb16737_00"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "包裹 已揽收 能否",
+            "rationale": "demo_lexical_coverage=0.50;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "max_hops_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test08",
+      "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test08",
+        "split": "test",
+        "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+        "relevant_doc_ids": [
+          "promo_stacking"
+        ],
+        "evidence_spans": [
+          {
+            "document": "promo_stacking",
+            "text": "秒杀价商品不可用 NEW10"
+          },
+          {
+            "document": "promo_stacking",
+            "text": "可使用包邮券 SHIP0"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "return_custom",
+        "membership_plus",
+        "packaging_gift",
+        "price_protect",
+        "repair_onsite"
+      ],
+      "chunk_ids": [
+        "return_custom_d31491b4_03",
+        "membership_plus_ab644d62_03",
+        "packaging_gift_89a65515_02",
+        "price_protect_f0bf249d_03",
+        "repair_onsite_ede3d888_01"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.95,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06210000719875097
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test08",
+      "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test08",
+        "split": "test",
+        "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+        "relevant_doc_ids": [
+          "promo_stacking"
+        ],
+        "evidence_spans": [
+          {
+            "document": "promo_stacking",
+            "text": "秒杀价商品不可用 NEW10"
+          },
+          {
+            "document": "promo_stacking",
+            "text": "可使用包邮券 SHIP0"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "return_custom",
+        "membership_plus",
+        "promo_stacking",
+        "packaging_gift"
+      ],
+      "chunk_ids": [
+        "return_custom_d31491b4_03",
+        "membership_plus_ab644d62_03",
+        "promo_stacking_a3820716_02",
+        "packaging_gift_89a65515_02",
+        "membership_plus_ab644d62_02"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 1.0,
+      "mrr": 0.3333333333333333,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.45,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06779999239370227
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test08",
+      "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test08",
+        "split": "test",
+        "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+        "relevant_doc_ids": [
+          "promo_stacking"
+        ],
+        "evidence_spans": [
+          {
+            "document": "promo_stacking",
+            "text": "秒杀价商品不可用 NEW10"
+          },
+          {
+            "document": "promo_stacking",
+            "text": "可使用包邮券 SHIP0"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "promo_stacking",
+        "membership_plus",
+        "return_custom",
+        "price_protect"
+      ],
+      "chunk_ids": [
+        "promo_stacking_a3820716_02",
+        "membership_plus_ab644d62_03",
+        "return_custom_d31491b4_03",
+        "membership_plus_ab644d62_02",
+        "price_protect_f0bf249d_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.99,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.08239998714998364
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.048799964133650064
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test08",
+      "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test08",
+        "split": "test",
+        "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+        "relevant_doc_ids": [
+          "promo_stacking"
+        ],
+        "evidence_spans": [
+          {
+            "document": "promo_stacking",
+            "text": "秒杀价商品不可用 NEW10"
+          },
+          {
+            "document": "promo_stacking",
+            "text": "可使用包邮券 SHIP0"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "promo_stacking",
+        "membership_plus",
+        "return_custom",
+        "price_protect"
+      ],
+      "chunk_ids": [
+        "promo_stacking_a3820716_02",
+        "membership_plus_ab644d62_03",
+        "return_custom_d31491b4_03",
+        "membership_plus_ab644d62_02",
+        "price_protect_f0bf249d_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 4.2,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07000000914558768
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.049399968702346087
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "new10 ship0",
+            "rationale": "demo_lexical_coverage=0.60;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "single_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test08",
+      "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test08",
+        "split": "test",
+        "query": "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+        "relevant_doc_ids": [
+          "promo_stacking"
+        ],
+        "evidence_spans": [
+          {
+            "document": "promo_stacking",
+            "text": "秒杀价商品不可用 NEW10"
+          },
+          {
+            "document": "promo_stacking",
+            "text": "可使用包邮券 SHIP0"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "promo_stacking",
+        "membership_plus",
+        "return_custom",
+        "price_protect",
+        "account_security",
+        "invoice_vat"
+      ],
+      "chunk_ids": [
+        "promo_stacking_a3820716_02",
+        "membership_plus_ab644d62_03",
+        "return_custom_d31491b4_03",
+        "membership_plus_ab644d62_02",
+        "price_protect_f0bf249d_02",
+        "account_security_afb16737_00",
+        "invoice_vat_d600f1a3_00"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 19.32,
+      "llm_calls": 3,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.10440003825351596
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04989997250959277
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.08029997115954757
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05360000068321824
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06079999729990959
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04560005618259311
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06980000762268901
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04310003714635968
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05520001286640763
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.0418000272475183
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？"
+          ],
+          "chunk_ids": [
+            "promo_stacking_a3820716_02",
+            "membership_plus_ab644d62_03",
+            "return_custom_d31491b4_03",
+            "membership_plus_ab644d62_02",
+            "price_protect_f0bf249d_02"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "new10 ship0",
+            "rationale": "demo_lexical_coverage=0.60;不是语义裁判"
+          }
+        },
+        {
+          "hop": 2,
+          "queries": [
+            "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+            "new10 ship0"
+          ],
+          "chunk_ids": [
+            "promo_stacking_a3820716_02",
+            "membership_plus_ab644d62_03",
+            "return_custom_d31491b4_03",
+            "membership_plus_ab644d62_02",
+            "price_protect_f0bf249d_02",
+            "account_security_afb16737_00",
+            "invoice_vat_d600f1a3_00"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "new10 ship0",
+            "rationale": "demo_lexical_coverage=0.60;不是语义裁判"
+          }
+        },
+        {
+          "hop": 3,
+          "queries": [
+            "秒杀商品能使用 NEW10 吗，能用 SHIP0 吗？",
+            "new10 ship0"
+          ],
+          "chunk_ids": [
+            "promo_stacking_a3820716_02",
+            "membership_plus_ab644d62_03",
+            "return_custom_d31491b4_03",
+            "membership_plus_ab644d62_02",
+            "price_protect_f0bf249d_02",
+            "account_security_afb16737_00",
+            "invoice_vat_d600f1a3_00"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "new10 ship0",
+            "rationale": "demo_lexical_coverage=0.60;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "max_hops_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test09",
+      "query": "定制和秒杀商品参加价保吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test09",
+        "split": "test",
+        "query": "定制和秒杀商品参加价保吗？",
+        "relevant_doc_ids": [
+          "price_protect"
+        ],
+        "evidence_spans": [
+          {
+            "document": "price_protect",
+            "text": "定制、秒杀"
+          },
+          {
+            "document": "price_protect",
+            "text": "不参加价保"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "membership_plus",
+        "invoice_vat",
+        "logistics_exception",
+        "warranty",
+        "cross_border"
+      ],
+      "chunk_ids": [
+        "membership_plus_ab644d62_02",
+        "invoice_vat_d600f1a3_03",
+        "logistics_exception_b97f65d5_02",
+        "warranty_1f88fd5f_01",
+        "cross_border_60f6605a_02"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.81,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06009999196976423
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test09",
+      "query": "定制和秒杀商品参加价保吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test09",
+        "split": "test",
+        "query": "定制和秒杀商品参加价保吗？",
+        "relevant_doc_ids": [
+          "price_protect"
+        ],
+        "evidence_spans": [
+          {
+            "document": "price_protect",
+            "text": "定制、秒杀"
+          },
+          {
+            "document": "price_protect",
+            "text": "不参加价保"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "price_protect",
+        "membership_plus",
+        "return_custom",
+        "invoice_vat"
+      ],
+      "chunk_ids": [
+        "price_protect_f0bf249d_02",
+        "membership_plus_ab644d62_02",
+        "return_custom_d31491b4_03",
+        "invoice_vat_d600f1a3_03",
+        "price_protect_f0bf249d_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.75,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06299995584413409
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test09",
+      "query": "定制和秒杀商品参加价保吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test09",
+        "split": "test",
+        "query": "定制和秒杀商品参加价保吗？",
+        "relevant_doc_ids": [
+          "price_protect"
+        ],
+        "evidence_spans": [
+          {
+            "document": "price_protect",
+            "text": "定制、秒杀"
+          },
+          {
+            "document": "price_protect",
+            "text": "不参加价保"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "price_protect",
+        "coupons",
+        "return_custom",
+        "invoice_vat"
+      ],
+      "chunk_ids": [
+        "price_protect_f0bf249d_02",
+        "coupons_2d68704d_01",
+        "return_custom_d31491b4_03",
+        "price_protect_f0bf249d_01",
+        "invoice_vat_d600f1a3_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.72,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06419996498152614
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04310003714635968
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test09",
+      "query": "定制和秒杀商品参加价保吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test09",
+        "split": "test",
+        "query": "定制和秒杀商品参加价保吗？",
+        "relevant_doc_ids": [
+          "price_protect"
+        ],
+        "evidence_spans": [
+          {
+            "document": "price_protect",
+            "text": "定制、秒杀"
+          },
+          {
+            "document": "price_protect",
+            "text": "不参加价保"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "price_protect",
+        "coupons",
+        "return_custom",
+        "invoice_vat"
+      ],
+      "chunk_ids": [
+        "price_protect_f0bf249d_02",
+        "coupons_2d68704d_01",
+        "return_custom_d31491b4_03",
+        "price_protect_f0bf249d_01",
+        "invoice_vat_d600f1a3_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.84,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.057100027333945036
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.0543000060133636
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "定制和秒杀商品参加价保吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "",
+            "rationale": "demo_lexical_coverage=1.00;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test09",
+      "query": "定制和秒杀商品参加价保吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test09",
+        "split": "test",
+        "query": "定制和秒杀商品参加价保吗？",
+        "relevant_doc_ids": [
+          "price_protect"
+        ],
+        "evidence_spans": [
+          {
+            "document": "price_protect",
+            "text": "定制、秒杀"
+          },
+          {
+            "document": "price_protect",
+            "text": "不参加价保"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "price_protect",
+        "coupons",
+        "return_custom",
+        "invoice_vat"
+      ],
+      "chunk_ids": [
+        "price_protect_f0bf249d_02",
+        "coupons_2d68704d_01",
+        "return_custom_d31491b4_03",
+        "price_protect_f0bf249d_01",
+        "invoice_vat_d600f1a3_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.99,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07800001185387373
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.047399953473359346
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "定制和秒杀商品参加价保吗？"
+          ],
+          "chunk_ids": [
+            "price_protect_f0bf249d_02",
+            "coupons_2d68704d_01",
+            "return_custom_d31491b4_03",
+            "price_protect_f0bf249d_01",
+            "invoice_vat_d600f1a3_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "",
+            "rationale": "demo_lexical_coverage=1.00;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test10",
+      "query": "积分过期后可以补发吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test10",
+        "split": "test",
+        "query": "积分过期后可以补发吗？",
+        "relevant_doc_ids": [
+          "points_expiry"
+        ],
+        "evidence_spans": [
+          {
+            "document": "points_expiry",
+            "text": "过期不补发"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "cross_border",
+        "logistics_exception",
+        "account_security",
+        "shipping_remote",
+        "warranty_jewelry"
+      ],
+      "chunk_ids": [
+        "cross_border_60f6605a_03",
+        "logistics_exception_b97f65d5_00",
+        "account_security_afb16737_00",
+        "shipping_remote_104aa5d1_00",
+        "warranty_jewelry_579c96b6_03"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.05,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06029999349266291
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test10",
+      "query": "积分过期后可以补发吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test10",
+        "split": "test",
+        "query": "积分过期后可以补发吗？",
+        "relevant_doc_ids": [
+          "points_expiry"
+        ],
+        "evidence_spans": [
+          {
+            "document": "points_expiry",
+            "text": "过期不补发"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "points_expiry",
+        "cross_border",
+        "missing_wrong_item",
+        "logistics_exception"
+      ],
+      "chunk_ids": [
+        "points_expiry_52095870_01",
+        "cross_border_60f6605a_03",
+        "missing_wrong_item_3dcbac87_02",
+        "logistics_exception_b97f65d5_00",
+        "logistics_exception_b97f65d5_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.48,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05600001895800233
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test10",
+      "query": "积分过期后可以补发吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test10",
+        "split": "test",
+        "query": "积分过期后可以补发吗？",
+        "relevant_doc_ids": [
+          "points_expiry"
+        ],
+        "evidence_spans": [
+          {
+            "document": "points_expiry",
+            "text": "过期不补发"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "points_expiry",
+        "missing_wrong_item",
+        "logistics_exception",
+        "cross_border",
+        "live_presale"
+      ],
+      "chunk_ids": [
+        "points_expiry_52095870_01",
+        "missing_wrong_item_3dcbac87_02",
+        "logistics_exception_b97f65d5_02",
+        "cross_border_60f6605a_03",
+        "live_presale_2eba858e_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.75,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06480002775788307
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05470000905916095
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test10",
+      "query": "积分过期后可以补发吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test10",
+        "split": "test",
+        "query": "积分过期后可以补发吗？",
+        "relevant_doc_ids": [
+          "points_expiry"
+        ],
+        "evidence_spans": [
+          {
+            "document": "points_expiry",
+            "text": "过期不补发"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "points_expiry",
+        "missing_wrong_item",
+        "logistics_exception",
+        "cross_border",
+        "live_presale"
+      ],
+      "chunk_ids": [
+        "points_expiry_52095870_01",
+        "missing_wrong_item_3dcbac87_02",
+        "logistics_exception_b97f65d5_02",
+        "cross_border_60f6605a_03",
+        "live_presale_2eba858e_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.85,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.057999975979328156
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04680000711232424
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "积分过期后可以补发吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "",
+            "rationale": "demo_lexical_coverage=1.00;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test10",
+      "query": "积分过期后可以补发吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test10",
+        "split": "test",
+        "query": "积分过期后可以补发吗？",
+        "relevant_doc_ids": [
+          "points_expiry"
+        ],
+        "evidence_spans": [
+          {
+            "document": "points_expiry",
+            "text": "过期不补发"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "points_expiry",
+        "missing_wrong_item",
+        "logistics_exception",
+        "cross_border",
+        "live_presale"
+      ],
+      "chunk_ids": [
+        "points_expiry_52095870_01",
+        "missing_wrong_item_3dcbac87_02",
+        "logistics_exception_b97f65d5_02",
+        "cross_border_60f6605a_03",
+        "live_presale_2eba858e_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.79,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06020005093887448
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.046799948904663324
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "积分过期后可以补发吗？"
+          ],
+          "chunk_ids": [
+            "points_expiry_52095870_01",
+            "missing_wrong_item_3dcbac87_02",
+            "logistics_exception_b97f65d5_02",
+            "cross_border_60f6605a_03",
+            "live_presale_2eba858e_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "",
+            "rationale": "demo_lexical_coverage=1.00;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test11",
+      "query": "无理由退货选择上门取件需要多少费用？",
+      "method": "vector",
+      "gold": {
+        "id": "test11",
+        "split": "test",
+        "query": "无理由退货选择上门取件需要多少费用？",
+        "relevant_doc_ids": [
+          "pickup_return"
+        ],
+        "evidence_spans": [
+          {
+            "document": "pickup_return",
+            "text": "无理由退货取件费 12 元"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "warranty_jewelry",
+        "faq"
+      ],
+      "chunk_ids": [
+        "warranty_jewelry_579c96b6_01",
+        "faq_1021b2da_03",
+        "faq_1021b2da_02",
+        "warranty_jewelry_579c96b6_02",
+        "warranty_jewelry_579c96b6_03"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.01,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05829997826367617
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test11",
+      "query": "无理由退货选择上门取件需要多少费用？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test11",
+        "split": "test",
+        "query": "无理由退货选择上门取件需要多少费用？",
+        "relevant_doc_ids": [
+          "pickup_return"
+        ],
+        "evidence_spans": [
+          {
+            "document": "pickup_return",
+            "text": "无理由退货取件费 12 元"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "warranty_jewelry",
+        "pickup_return",
+        "repair_onsite",
+        "faq"
+      ],
+      "chunk_ids": [
+        "warranty_jewelry_579c96b6_03",
+        "pickup_return_d230b6de_03",
+        "warranty_jewelry_579c96b6_01",
+        "repair_onsite_ede3d888_03",
+        "faq_1021b2da_03"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 1.0,
+      "mrr": 0.5,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.57,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0591999851167202
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test11",
+      "query": "无理由退货选择上门取件需要多少费用？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test11",
+        "split": "test",
+        "query": "无理由退货选择上门取件需要多少费用？",
+        "relevant_doc_ids": [
+          "pickup_return"
+        ],
+        "evidence_spans": [
+          {
+            "document": "pickup_return",
+            "text": "无理由退货取件费 12 元"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "pickup_return",
+        "repair_onsite",
+        "warranty_jewelry"
+      ],
+      "chunk_ids": [
+        "pickup_return_d230b6de_03",
+        "repair_onsite_ede3d888_03",
+        "warranty_jewelry_579c96b6_03",
+        "pickup_return_d230b6de_01",
+        "warranty_jewelry_579c96b6_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.75,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05169998621568084
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.048799964133650064
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test11",
+      "query": "无理由退货选择上门取件需要多少费用？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test11",
+        "split": "test",
+        "query": "无理由退货选择上门取件需要多少费用？",
+        "relevant_doc_ids": [
+          "pickup_return"
+        ],
+        "evidence_spans": [
+          {
+            "document": "pickup_return",
+            "text": "无理由退货取件费 12 元"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "pickup_return",
+        "repair_onsite",
+        "warranty_jewelry"
+      ],
+      "chunk_ids": [
+        "pickup_return_d230b6de_03",
+        "repair_onsite_ede3d888_03",
+        "warranty_jewelry_579c96b6_03",
+        "pickup_return_d230b6de_01",
+        "warranty_jewelry_579c96b6_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.93,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05140004213899374
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04700000863522291
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "无理由退货选择上门取件需要多少费用？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "费用",
+            "rationale": "demo_lexical_coverage=0.83;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test11",
+      "query": "无理由退货选择上门取件需要多少费用？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test11",
+        "split": "test",
+        "query": "无理由退货选择上门取件需要多少费用？",
+        "relevant_doc_ids": [
+          "pickup_return"
+        ],
+        "evidence_spans": [
+          {
+            "document": "pickup_return",
+            "text": "无理由退货取件费 12 元"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "pickup_return",
+        "repair_onsite",
+        "warranty_jewelry"
+      ],
+      "chunk_ids": [
+        "pickup_return_d230b6de_03",
+        "repair_onsite_ede3d888_03",
+        "warranty_jewelry_579c96b6_03",
+        "pickup_return_d230b6de_01",
+        "warranty_jewelry_579c96b6_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.04,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.08249998791143298
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.042599975131452084
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "无理由退货选择上门取件需要多少费用？"
+          ],
+          "chunk_ids": [
+            "pickup_return_d230b6de_03",
+            "repair_onsite_ede3d888_03",
+            "warranty_jewelry_579c96b6_03",
+            "pickup_return_d230b6de_01",
+            "warranty_jewelry_579c96b6_02"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "费用",
+            "rationale": "demo_lexical_coverage=0.83;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test12",
+      "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+      "method": "vector",
+      "gold": {
+        "id": "test12",
+        "split": "test",
+        "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+        "relevant_doc_ids": [
+          "cross_border"
+        ],
+        "evidence_spans": [
+          {
+            "document": "cross_border",
+            "text": "质量问题须在签收 7 日内申请"
+          },
+          {
+            "document": "cross_border",
+            "text": "国际段运费平台承担"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "live_presale",
+        "payment_methods",
+        "install_appliance",
+        "missing_wrong_item",
+        "shipping_address"
+      ],
+      "chunk_ids": [
+        "live_presale_2eba858e_03",
+        "payment_methods_82a85cb2_03",
+        "install_appliance_ff51ceed_01",
+        "missing_wrong_item_3dcbac87_01",
+        "shipping_address_7242689a_03"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.99,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.054500007536262274
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test12",
+      "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test12",
+        "split": "test",
+        "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+        "relevant_doc_ids": [
+          "cross_border"
+        ],
+        "evidence_spans": [
+          {
+            "document": "cross_border",
+            "text": "质量问题须在签收 7 日内申请"
+          },
+          {
+            "document": "cross_border",
+            "text": "国际段运费平台承担"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "cross_border",
+        "live_presale",
+        "return_policy",
+        "payment_methods",
+        "return_custom"
+      ],
+      "chunk_ids": [
+        "cross_border_60f6605a_02",
+        "live_presale_2eba858e_03",
+        "return_policy_2f2e66b9_01",
+        "payment_methods_82a85cb2_03",
+        "return_custom_d31491b4_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.63,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.04910002462565899
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test12",
+      "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test12",
+        "split": "test",
+        "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+        "relevant_doc_ids": [
+          "cross_border"
+        ],
+        "evidence_spans": [
+          {
+            "document": "cross_border",
+            "text": "质量问题须在签收 7 日内申请"
+          },
+          {
+            "document": "cross_border",
+            "text": "国际段运费平台承担"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "cross_border",
+        "return_policy",
+        "return_custom",
+        "pickup_return",
+        "install_appliance"
+      ],
+      "chunk_ids": [
+        "cross_border_60f6605a_02",
+        "return_policy_2f2e66b9_01",
+        "return_custom_d31491b4_02",
+        "pickup_return_d230b6de_03",
+        "install_appliance_ff51ceed_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.86,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.062400009483098984
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05219999002292752
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test12",
+      "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test12",
+        "split": "test",
+        "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+        "relevant_doc_ids": [
+          "cross_border"
+        ],
+        "evidence_spans": [
+          {
+            "document": "cross_border",
+            "text": "质量问题须在签收 7 日内申请"
+          },
+          {
+            "document": "cross_border",
+            "text": "国际段运费平台承担"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "cross_border",
+        "return_policy",
+        "return_custom",
+        "pickup_return",
+        "install_appliance"
+      ],
+      "chunk_ids": [
+        "cross_border_60f6605a_02",
+        "return_policy_2f2e66b9_01",
+        "return_custom_d31491b4_02",
+        "pickup_return_d230b6de_03",
+        "install_appliance_ff51ceed_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.2,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06609997944906354
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.060399994254112244
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "跨境商品有质量问题的申请期限和国际运费承担方是什么？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "方是 期限",
+            "rationale": "demo_lexical_coverage=0.78;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test12",
+      "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test12",
+        "split": "test",
+        "query": "跨境商品有质量问题的申请期限和国际运费承担方是什么？",
+        "relevant_doc_ids": [
+          "cross_border"
+        ],
+        "evidence_spans": [
+          {
+            "document": "cross_border",
+            "text": "质量问题须在签收 7 日内申请"
+          },
+          {
+            "document": "cross_border",
+            "text": "国际段运费平台承担"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "cross_border",
+        "return_policy",
+        "return_custom",
+        "pickup_return",
+        "install_appliance"
+      ],
+      "chunk_ids": [
+        "cross_border_60f6605a_02",
+        "return_policy_2f2e66b9_01",
+        "return_custom_d31491b4_02",
+        "pickup_return_d230b6de_03",
+        "install_appliance_ff51ceed_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.01,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06230000872164965
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04740001168102026
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "跨境商品有质量问题的申请期限和国际运费承担方是什么？"
+          ],
+          "chunk_ids": [
+            "cross_border_60f6605a_02",
+            "return_policy_2f2e66b9_01",
+            "return_custom_d31491b4_02",
+            "pickup_return_d230b6de_03",
+            "install_appliance_ff51ceed_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "方是 期限",
+            "rationale": "demo_lexical_coverage=0.78;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test13",
+      "query": "漏发商品审核后多久补发，是否再次收费？",
+      "method": "vector",
+      "gold": {
+        "id": "test13",
+        "split": "test",
+        "query": "漏发商品审核后多久补发，是否再次收费？",
+        "relevant_doc_ids": [
+          "missing_wrong_item"
+        ],
+        "evidence_spans": [
+          {
+            "document": "missing_wrong_item",
+            "text": "24 小时内补发，不再收取运费"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "account_security",
+        "complaint_sla",
+        "cross_border",
+        "faq"
+      ],
+      "chunk_ids": [
+        "account_security_afb16737_01",
+        "complaint_sla_f6fe97f8_01",
+        "cross_border_60f6605a_01",
+        "faq_1021b2da_01",
+        "faq_1021b2da_04"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.92,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.054699950851500034
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test13",
+      "query": "漏发商品审核后多久补发，是否再次收费？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test13",
+        "split": "test",
+        "query": "漏发商品审核后多久补发，是否再次收费？",
+        "relevant_doc_ids": [
+          "missing_wrong_item"
+        ],
+        "evidence_spans": [
+          {
+            "document": "missing_wrong_item",
+            "text": "24 小时内补发，不再收取运费"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "missing_wrong_item",
+        "account_security",
+        "complaint_sla",
+        "warranty_jewelry"
+      ],
+      "chunk_ids": [
+        "missing_wrong_item_3dcbac87_02",
+        "account_security_afb16737_01",
+        "missing_wrong_item_3dcbac87_01",
+        "complaint_sla_f6fe97f8_01",
+        "warranty_jewelry_579c96b6_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.57,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0678999931551516
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test13",
+      "query": "漏发商品审核后多久补发，是否再次收费？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test13",
+        "split": "test",
+        "query": "漏发商品审核后多久补发，是否再次收费？",
+        "relevant_doc_ids": [
+          "missing_wrong_item"
+        ],
+        "evidence_spans": [
+          {
+            "document": "missing_wrong_item",
+            "text": "24 小时内补发，不再收取运费"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "missing_wrong_item",
+        "shipping_split",
+        "warranty_jewelry",
+        "cross_border"
+      ],
+      "chunk_ids": [
+        "missing_wrong_item_3dcbac87_02",
+        "shipping_split_5cae1477_01",
+        "missing_wrong_item_3dcbac87_01",
+        "warranty_jewelry_579c96b6_03",
+        "cross_border_60f6605a_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 4.09,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05789997521787882
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05809997674077749
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test13",
+      "query": "漏发商品审核后多久补发，是否再次收费？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test13",
+        "split": "test",
+        "query": "漏发商品审核后多久补发，是否再次收费？",
+        "relevant_doc_ids": [
+          "missing_wrong_item"
+        ],
+        "evidence_spans": [
+          {
+            "document": "missing_wrong_item",
+            "text": "24 小时内补发，不再收取运费"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "missing_wrong_item",
+        "shipping_split",
+        "warranty_jewelry",
+        "cross_border"
+      ],
+      "chunk_ids": [
+        "missing_wrong_item_3dcbac87_02",
+        "shipping_split_5cae1477_01",
+        "missing_wrong_item_3dcbac87_01",
+        "warranty_jewelry_579c96b6_03",
+        "cross_border_60f6605a_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.03,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0727999722585082
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04769995575770736
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "漏发商品审核后多久补发，是否再次收费？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "再次 多久",
+            "rationale": "demo_lexical_coverage=0.71;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test13",
+      "query": "漏发商品审核后多久补发，是否再次收费？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test13",
+        "split": "test",
+        "query": "漏发商品审核后多久补发，是否再次收费？",
+        "relevant_doc_ids": [
+          "missing_wrong_item"
+        ],
+        "evidence_spans": [
+          {
+            "document": "missing_wrong_item",
+            "text": "24 小时内补发，不再收取运费"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "missing_wrong_item",
+        "shipping_split",
+        "warranty_jewelry",
+        "cross_border"
+      ],
+      "chunk_ids": [
+        "missing_wrong_item_3dcbac87_02",
+        "shipping_split_5cae1477_01",
+        "missing_wrong_item_3dcbac87_01",
+        "warranty_jewelry_579c96b6_03",
+        "cross_border_60f6605a_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.82,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06280001252889633
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04509999416768551
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "漏发商品审核后多久补发，是否再次收费？"
+          ],
+          "chunk_ids": [
+            "missing_wrong_item_3dcbac87_02",
+            "shipping_split_5cae1477_01",
+            "missing_wrong_item_3dcbac87_01",
+            "warranty_jewelry_579c96b6_03",
+            "cross_border_60f6605a_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "再次 多久",
+            "rationale": "demo_lexical_coverage=0.71;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test14",
+      "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test14",
+        "split": "test",
+        "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+        "relevant_doc_ids": [
+          "membership_plus"
+        ],
+        "evidence_spans": [
+          {
+            "document": "membership_plus",
+            "text": "PLUS 运费券可与 NEW10 同单使用"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "membership_plus",
+        "return_custom",
+        "warranty"
+      ],
+      "chunk_ids": [
+        "membership_plus_ab644d62_03",
+        "return_custom_d31491b4_03",
+        "membership_plus_ab644d62_02",
+        "membership_plus_ab644d62_01",
+        "warranty_1f88fd5f_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.97,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06430002395063639
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test14",
+      "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test14",
+        "split": "test",
+        "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+        "relevant_doc_ids": [
+          "membership_plus"
+        ],
+        "evidence_spans": [
+          {
+            "document": "membership_plus",
+            "text": "PLUS 运费券可与 NEW10 同单使用"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "membership_plus",
+        "return_custom",
+        "promo_stacking"
+      ],
+      "chunk_ids": [
+        "membership_plus_ab644d62_03",
+        "return_custom_d31491b4_03",
+        "membership_plus_ab644d62_02",
+        "promo_stacking_a3820716_01",
+        "promo_stacking_a3820716_02"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.6,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06430002395063639
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test14",
+      "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test14",
+        "split": "test",
+        "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+        "relevant_doc_ids": [
+          "membership_plus"
+        ],
+        "evidence_spans": [
+          {
+            "document": "membership_plus",
+            "text": "PLUS 运费券可与 NEW10 同单使用"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "membership_plus",
+        "return_custom",
+        "promo_stacking"
+      ],
+      "chunk_ids": [
+        "membership_plus_ab644d62_03",
+        "membership_plus_ab644d62_02",
+        "return_custom_d31491b4_03",
+        "promo_stacking_a3820716_02",
+        "membership_plus_ab644d62_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.69,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07029995322227478
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05139998393133283
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test14",
+      "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test14",
+        "split": "test",
+        "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+        "relevant_doc_ids": [
+          "membership_plus"
+        ],
+        "evidence_spans": [
+          {
+            "document": "membership_plus",
+            "text": "PLUS 运费券可与 NEW10 同单使用"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "membership_plus",
+        "return_custom",
+        "promo_stacking"
+      ],
+      "chunk_ids": [
+        "membership_plus_ab644d62_03",
+        "membership_plus_ab644d62_02",
+        "return_custom_d31491b4_03",
+        "promo_stacking_a3820716_02",
+        "membership_plus_ab644d62_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 3.84,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06529997335746884
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.056100019719451666
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "PLUS 运费券可以和 NEW10 同一单使用吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "new10 plus 同一",
+            "rationale": "demo_lexical_coverage=0.40;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "single_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test14",
+      "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test14",
+        "split": "test",
+        "query": "PLUS 运费券可以和 NEW10 同一单使用吗？",
+        "relevant_doc_ids": [
+          "membership_plus"
+        ],
+        "evidence_spans": [
+          {
+            "document": "membership_plus",
+            "text": "PLUS 运费券可与 NEW10 同单使用"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "membership_plus",
+        "return_custom",
+        "promo_stacking"
+      ],
+      "chunk_ids": [
+        "membership_plus_ab644d62_03",
+        "membership_plus_ab644d62_02",
+        "return_custom_d31491b4_03",
+        "promo_stacking_a3820716_02",
+        "membership_plus_ab644d62_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": false,
+      "decision_correct": false,
+      "elapsed_ms": 19.53,
+      "llm_calls": 3,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06769999163225293
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04819995956495404
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06410002242773771
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.058800040278583765
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.11880003148689866
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.050900038331747055
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.08319999324157834
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05329999839887023
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0686999992467463
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.03880000440403819
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "PLUS 运费券可以和 NEW10 同一单使用吗？"
+          ],
+          "chunk_ids": [
+            "membership_plus_ab644d62_03",
+            "membership_plus_ab644d62_02",
+            "return_custom_d31491b4_03",
+            "promo_stacking_a3820716_02",
+            "membership_plus_ab644d62_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "new10 plus 同一",
+            "rationale": "demo_lexical_coverage=0.40;不是语义裁判"
+          }
+        },
+        {
+          "hop": 2,
+          "queries": [
+            "PLUS 运费券可以和 NEW10 同一单使用吗？",
+            "new10 plus 同一"
+          ],
+          "chunk_ids": [
+            "membership_plus_ab644d62_03",
+            "membership_plus_ab644d62_02",
+            "return_custom_d31491b4_03",
+            "promo_stacking_a3820716_02",
+            "membership_plus_ab644d62_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "new10 plus 同一",
+            "rationale": "demo_lexical_coverage=0.40;不是语义裁判"
+          }
+        },
+        {
+          "hop": 3,
+          "queries": [
+            "PLUS 运费券可以和 NEW10 同一单使用吗？",
+            "new10 plus 同一"
+          ],
+          "chunk_ids": [
+            "membership_plus_ab644d62_03",
+            "membership_plus_ab644d62_02",
+            "return_custom_d31491b4_03",
+            "promo_stacking_a3820716_02",
+            "membership_plus_ab644d62_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "new10 plus 同一",
+            "rationale": "demo_lexical_coverage=0.40;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "max_hops_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test15",
+      "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test15",
+        "split": "test",
+        "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+        "relevant_doc_ids": [
+          "packaging_gift"
+        ],
+        "evidence_spans": [
+          {
+            "document": "packaging_gift",
+            "text": "礼品包装 8 元/件"
+          },
+          {
+            "document": "packaging_gift",
+            "text": "包装费一并退"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "return_custom",
+        "payment_methods",
+        "cross_border",
+        "faq",
+        "live_presale"
+      ],
+      "chunk_ids": [
+        "return_custom_d31491b4_02",
+        "payment_methods_82a85cb2_01",
+        "cross_border_60f6605a_01",
+        "faq_1021b2da_02",
+        "live_presale_2eba858e_02"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 2.92,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06289995508268476
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test15",
+      "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test15",
+        "split": "test",
+        "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+        "relevant_doc_ids": [
+          "packaging_gift"
+        ],
+        "evidence_spans": [
+          {
+            "document": "packaging_gift",
+            "text": "礼品包装 8 元/件"
+          },
+          {
+            "document": "packaging_gift",
+            "text": "包装费一并退"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "return_custom",
+        "packaging_gift",
+        "payment_methods",
+        "cross_border"
+      ],
+      "chunk_ids": [
+        "return_custom_d31491b4_02",
+        "packaging_gift_89a65515_03",
+        "packaging_gift_89a65515_01",
+        "payment_methods_82a85cb2_01",
+        "cross_border_60f6605a_01"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 1.0,
+      "mrr": 0.5,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.77,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.059100042562931776
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test15",
+      "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test15",
+        "split": "test",
+        "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+        "relevant_doc_ids": [
+          "packaging_gift"
+        ],
+        "evidence_spans": [
+          {
+            "document": "packaging_gift",
+            "text": "礼品包装 8 元/件"
+          },
+          {
+            "document": "packaging_gift",
+            "text": "包装费一并退"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "packaging_gift",
+        "return_custom",
+        "exchange_size",
+        "refund_timeline"
+      ],
+      "chunk_ids": [
+        "packaging_gift_89a65515_03",
+        "return_custom_d31491b4_02",
+        "packaging_gift_89a65515_01",
+        "exchange_size_216f0802_03",
+        "refund_timeline_dbf0b0cb_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.88,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.057999975979328156
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.042300031054764986
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test15",
+      "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test15",
+        "split": "test",
+        "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+        "relevant_doc_ids": [
+          "packaging_gift"
+        ],
+        "evidence_spans": [
+          {
+            "document": "packaging_gift",
+            "text": "礼品包装 8 元/件"
+          },
+          {
+            "document": "packaging_gift",
+            "text": "包装费一并退"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "packaging_gift",
+        "return_custom",
+        "exchange_size",
+        "refund_timeline"
+      ],
+      "chunk_ids": [
+        "packaging_gift_89a65515_03",
+        "return_custom_d31491b4_02",
+        "packaging_gift_89a65515_01",
+        "exchange_size_216f0802_03",
+        "refund_timeline_dbf0b0cb_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.61,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.049900030717253685
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04429998807609081
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "礼品包装费是多少，商品质量问题时包装费退吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "费是",
+            "rationale": "demo_lexical_coverage=0.75;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test15",
+      "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test15",
+        "split": "test",
+        "query": "礼品包装费是多少，商品质量问题时包装费退吗？",
+        "relevant_doc_ids": [
+          "packaging_gift"
+        ],
+        "evidence_spans": [
+          {
+            "document": "packaging_gift",
+            "text": "礼品包装 8 元/件"
+          },
+          {
+            "document": "packaging_gift",
+            "text": "包装费一并退"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "multi"
+      },
+      "documents": [
+        "packaging_gift",
+        "return_custom",
+        "exchange_size",
+        "refund_timeline"
+      ],
+      "chunk_ids": [
+        "packaging_gift_89a65515_03",
+        "return_custom_d31491b4_02",
+        "packaging_gift_89a65515_01",
+        "exchange_size_216f0802_03",
+        "refund_timeline_dbf0b0cb_03"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.69,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.049399968702346087
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04040001658722758
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "礼品包装费是多少，商品质量问题时包装费退吗？"
+          ],
+          "chunk_ids": [
+            "packaging_gift_89a65515_03",
+            "return_custom_d31491b4_02",
+            "packaging_gift_89a65515_01",
+            "exchange_size_216f0802_03",
+            "refund_timeline_dbf0b0cb_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "费是",
+            "rationale": "demo_lexical_coverage=0.75;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test16",
+      "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test16",
+        "split": "test",
+        "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+        "relevant_doc_ids": [
+          "shipping_split"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_split",
+            "text": "不重复收取"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "exchange_size",
+        "pickup_return",
+        "privacy_cs",
+        "logistics_exception",
+        "return_electronics"
+      ],
+      "chunk_ids": [
+        "exchange_size_216f0802_01",
+        "pickup_return_d230b6de_03",
+        "privacy_cs_0c4fad81_03",
+        "logistics_exception_b97f65d5_02",
+        "return_electronics_ecb5e89c_01"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "mrr": 0.0,
+      "all_annotated_spans_retrieved": false,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.19,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05180004518479109
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test16",
+      "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test16",
+        "split": "test",
+        "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+        "relevant_doc_ids": [
+          "shipping_split"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_split",
+            "text": "不重复收取"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "logistics_exception",
+        "shipping_split",
+        "exchange_size",
+        "pickup_return",
+        "warranty"
+      ],
+      "chunk_ids": [
+        "logistics_exception_b97f65d5_02",
+        "shipping_split_5cae1477_01",
+        "exchange_size_216f0802_01",
+        "pickup_return_d230b6de_03",
+        "warranty_1f88fd5f_02"
+      ],
+      "precision_at_1": 0.0,
+      "recall_at_3": 1.0,
+      "mrr": 0.5,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 4.16,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.12049998622387648
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test16",
+      "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test16",
+        "split": "test",
+        "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+        "relevant_doc_ids": [
+          "shipping_split"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_split",
+            "text": "不重复收取"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "shipping_split",
+        "logistics_exception",
+        "complaint_sla",
+        "exchange_size"
+      ],
+      "chunk_ids": [
+        "shipping_split_5cae1477_01",
+        "logistics_exception_b97f65d5_02",
+        "shipping_split_5cae1477_03",
+        "complaint_sla_f6fe97f8_02",
+        "exchange_size_216f0802_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.82,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06229995051398873
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.047200010158121586
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test16",
+      "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test16",
+        "split": "test",
+        "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+        "relevant_doc_ids": [
+          "shipping_split"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_split",
+            "text": "不重复收取"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "shipping_split",
+        "logistics_exception",
+        "complaint_sla",
+        "exchange_size"
+      ],
+      "chunk_ids": [
+        "shipping_split_5cae1477_01",
+        "logistics_exception_b97f65d5_02",
+        "shipping_split_5cae1477_03",
+        "complaint_sla_f6fe97f8_02",
+        "exchange_size_216f0802_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 3.8,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05080003757029772
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.03940000897273421
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "多仓拆单后每段都有运单，会重复收运费吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "多仓",
+            "rationale": "demo_lexical_coverage=0.83;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test16",
+      "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test16",
+        "split": "test",
+        "query": "多仓拆单后每段都有运单，会重复收运费吗？",
+        "relevant_doc_ids": [
+          "shipping_split"
+        ],
+        "evidence_spans": [
+          {
+            "document": "shipping_split",
+            "text": "不重复收取"
+          }
+        ],
+        "answerable": true,
+        "expected_path": "single"
+      },
+      "documents": [
+        "shipping_split",
+        "logistics_exception",
+        "complaint_sla",
+        "exchange_size"
+      ],
+      "chunk_ids": [
+        "shipping_split_5cae1477_01",
+        "logistics_exception_b97f65d5_02",
+        "shipping_split_5cae1477_03",
+        "complaint_sla_f6fe97f8_02",
+        "exchange_size_216f0802_01"
+      ],
+      "precision_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "mrr": 1.0,
+      "all_annotated_spans_retrieved": true,
+      "sufficient": true,
+      "decision_correct": true,
+      "elapsed_ms": 4.36,
+      "llm_calls": 1,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.058999983593821526
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04349998198449612
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "多仓拆单后每段都有运单，会重复收运费吗？"
+          ],
+          "chunk_ids": [
+            "shipping_split_5cae1477_01",
+            "logistics_exception_b97f65d5_02",
+            "shipping_split_5cae1477_03",
+            "complaint_sla_f6fe97f8_02",
+            "exchange_size_216f0802_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "多仓",
+            "rationale": "demo_lexical_coverage=0.83;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "warnings": []
+    },
+    {
+      "id": "test17",
+      "query": "购买耳机可以获得终身免费国际旅行吗？",
+      "method": "vector",
+      "gold": {
+        "id": "test17",
+        "split": "test",
+        "query": "购买耳机可以获得终身免费国际旅行吗？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "gift_card",
+        "shipping_remote",
+        "handoff_hours",
+        "shipping",
+        "cross_border"
+      ],
+      "chunk_ids": [
+        "gift_card_25ceb666_03",
+        "shipping_remote_104aa5d1_03",
+        "handoff_hours_2d7a34e9_01",
+        "shipping_6c5f3232_04",
+        "cross_border_60f6605a_01"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.05,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.06160000339150429
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test17",
+      "query": "购买耳机可以获得终身免费国际旅行吗？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test17",
+        "split": "test",
+        "query": "购买耳机可以获得终身免费国际旅行吗？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "gift_card",
+        "cross_border",
+        "shipping_remote",
+        "return_electronics"
+      ],
+      "chunk_ids": [
+        "gift_card_25ceb666_01",
+        "gift_card_25ceb666_03",
+        "cross_border_60f6605a_02",
+        "shipping_remote_104aa5d1_03",
+        "return_electronics_ecb5e89c_01"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.57,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.059999991208314896
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test17",
+      "query": "购买耳机可以获得终身免费国际旅行吗？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test17",
+        "split": "test",
+        "query": "购买耳机可以获得终身免费国际旅行吗？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "gift_card",
+        "cross_border",
+        "return_electronics",
+        "repair_onsite"
+      ],
+      "chunk_ids": [
+        "gift_card_25ceb666_01",
+        "cross_border_60f6605a_02",
+        "return_electronics_ecb5e89c_01",
+        "repair_onsite_ede3d888_02",
+        "gift_card_25ceb666_03"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.62,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.049900030717253685
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05779997445642948
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test17",
+      "query": "购买耳机可以获得终身免费国际旅行吗？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test17",
+        "split": "test",
+        "query": "购买耳机可以获得终身免费国际旅行吗？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "gift_card",
+        "cross_border",
+        "return_electronics",
+        "repair_onsite"
+      ],
+      "chunk_ids": [
+        "gift_card_25ceb666_01",
+        "cross_border_60f6605a_02",
+        "return_electronics_ecb5e89c_01",
+        "repair_onsite_ede3d888_02",
+        "gift_card_25ceb666_03"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": false,
+      "decision_correct": true,
+      "elapsed_ms": 3.73,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.04900002386420965
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.0475000124424696
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "购买耳机可以获得终身免费国际旅行吗？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "旅行 终身 获得",
+            "rationale": "demo_lexical_coverage=0.57;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "single_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test17",
+      "query": "购买耳机可以获得终身免费国际旅行吗？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test17",
+        "split": "test",
+        "query": "购买耳机可以获得终身免费国际旅行吗？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "gift_card",
+        "cross_border",
+        "return_electronics",
+        "repair_onsite",
+        "account_security",
+        "refund_timeline",
+        "shipping",
+        "handoff_hours"
+      ],
+      "chunk_ids": [
+        "gift_card_25ceb666_01",
+        "cross_border_60f6605a_02",
+        "return_electronics_ecb5e89c_01",
+        "repair_onsite_ede3d888_02",
+        "gift_card_25ceb666_03",
+        "account_security_afb16737_01",
+        "refund_timeline_dbf0b0cb_01",
+        "account_security_afb16737_00",
+        "shipping_6c5f3232_01",
+        "handoff_hours_2d7a34e9_01"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": false,
+      "decision_correct": true,
+      "elapsed_ms": 19.69,
+      "llm_calls": 3,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05949998740106821
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.06230000872164965
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07329997606575489
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.05070003680884838
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07589999586343765
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.06180000491440296
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05460000829771161
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.051099981646984816
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07020001066848636
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04880002234131098
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "购买耳机可以获得终身免费国际旅行吗？"
+          ],
+          "chunk_ids": [
+            "gift_card_25ceb666_01",
+            "cross_border_60f6605a_02",
+            "return_electronics_ecb5e89c_01",
+            "repair_onsite_ede3d888_02",
+            "gift_card_25ceb666_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "旅行 终身 获得",
+            "rationale": "demo_lexical_coverage=0.57;不是语义裁判"
+          }
+        },
+        {
+          "hop": 2,
+          "queries": [
+            "购买耳机可以获得终身免费国际旅行吗？",
+            "旅行 终身 获得"
+          ],
+          "chunk_ids": [
+            "gift_card_25ceb666_01",
+            "cross_border_60f6605a_02",
+            "return_electronics_ecb5e89c_01",
+            "repair_onsite_ede3d888_02",
+            "gift_card_25ceb666_03",
+            "account_security_afb16737_01",
+            "refund_timeline_dbf0b0cb_01",
+            "account_security_afb16737_00",
+            "shipping_6c5f3232_01",
+            "handoff_hours_2d7a34e9_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "旅行 终身 获得",
+            "rationale": "demo_lexical_coverage=0.57;不是语义裁判"
+          }
+        },
+        {
+          "hop": 3,
+          "queries": [
+            "购买耳机可以获得终身免费国际旅行吗？",
+            "旅行 终身 获得"
+          ],
+          "chunk_ids": [
+            "gift_card_25ceb666_01",
+            "cross_border_60f6605a_02",
+            "return_electronics_ecb5e89c_01",
+            "repair_onsite_ede3d888_02",
+            "gift_card_25ceb666_03",
+            "account_security_afb16737_01",
+            "refund_timeline_dbf0b0cb_01",
+            "account_security_afb16737_00",
+            "shipping_6c5f3232_01",
+            "handoff_hours_2d7a34e9_01"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "旅行 终身 获得",
+            "rationale": "demo_lexical_coverage=0.57;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "max_hops_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test18",
+      "query": "贵店承诺月球配送具体多少小时到货？",
+      "method": "vector",
+      "gold": {
+        "id": "test18",
+        "split": "test",
+        "query": "贵店承诺月球配送具体多少小时到货？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "payment_methods",
+        "coupons",
+        "logistics_exception",
+        "shipping_cod",
+        "price_protect"
+      ],
+      "chunk_ids": [
+        "payment_methods_82a85cb2_01",
+        "coupons_2d68704d_03",
+        "logistics_exception_b97f65d5_02",
+        "shipping_cod_9a3c8717_01",
+        "price_protect_f0bf249d_03"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.1,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.057800032664090395
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test18",
+      "query": "贵店承诺月球配送具体多少小时到货？",
+      "method": "hybrid",
+      "gold": {
+        "id": "test18",
+        "split": "test",
+        "query": "贵店承诺月球配送具体多少小时到货？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "restock_notify",
+        "payment_methods",
+        "coupons",
+        "invoice_vat"
+      ],
+      "chunk_ids": [
+        "restock_notify_8fe4d981_01",
+        "payment_methods_82a85cb2_01",
+        "restock_notify_8fe4d981_02",
+        "coupons_2d68704d_03",
+        "invoice_vat_d600f1a3_00"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.56,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.0591999851167202
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test18",
+      "query": "贵店承诺月球配送具体多少小时到货？",
+      "method": "hybrid_rerank",
+      "gold": {
+        "id": "test18",
+        "split": "test",
+        "query": "贵店承诺月球配送具体多少小时到货？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "invoice_vat",
+        "logistics_exception",
+        "restock_notify",
+        "coupons"
+      ],
+      "chunk_ids": [
+        "invoice_vat_d600f1a3_00",
+        "logistics_exception_b97f65d5_00",
+        "restock_notify_8fe4d981_01",
+        "coupons_2d68704d_00",
+        "restock_notify_8fe4d981_02"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": null,
+      "decision_correct": null,
+      "elapsed_ms": 3.55,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05709996912628412
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.04220003029331565
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [],
+      "stop_reason": "",
+      "warnings": []
+    },
+    {
+      "id": "test18",
+      "query": "贵店承诺月球配送具体多少小时到货？",
+      "method": "fixed_single",
+      "gold": {
+        "id": "test18",
+        "split": "test",
+        "query": "贵店承诺月球配送具体多少小时到货？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "invoice_vat",
+        "logistics_exception",
+        "restock_notify",
+        "coupons"
+      ],
+      "chunk_ids": [
+        "invoice_vat_d600f1a3_00",
+        "logistics_exception_b97f65d5_00",
+        "restock_notify_8fe4d981_01",
+        "coupons_2d68704d_00",
+        "restock_notify_8fe4d981_02"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": false,
+      "decision_correct": true,
+      "elapsed_ms": 3.7,
+      "llm_calls": 0,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.12159999459981918
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.03579998156055808
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "贵店承诺月球配送具体多少小时到货？"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "具体 月球 贵店 配送",
+            "rationale": "demo_lexical_coverage=0.43;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "single_insufficient",
+      "warnings": []
+    },
+    {
+      "id": "test18",
+      "query": "贵店承诺月球配送具体多少小时到货？",
+      "method": "adaptive",
+      "gold": {
+        "id": "test18",
+        "split": "test",
+        "query": "贵店承诺月球配送具体多少小时到货？",
+        "relevant_doc_ids": [],
+        "evidence_spans": [],
+        "answerable": false,
+        "expected_path": "single"
+      },
+      "documents": [
+        "invoice_vat",
+        "logistics_exception",
+        "restock_notify",
+        "coupons",
+        "account_security",
+        "membership_plus",
+        "shipping_address",
+        "warranty_jewelry"
+      ],
+      "chunk_ids": [
+        "invoice_vat_d600f1a3_00",
+        "logistics_exception_b97f65d5_00",
+        "restock_notify_8fe4d981_01",
+        "coupons_2d68704d_00",
+        "restock_notify_8fe4d981_02",
+        "account_security_afb16737_00",
+        "membership_plus_ab644d62_01",
+        "shipping_address_7242689a_01",
+        "account_security_afb16737_02",
+        "warranty_jewelry_579c96b6_03"
+      ],
+      "precision_at_1": null,
+      "recall_at_3": null,
+      "mrr": null,
+      "all_annotated_spans_retrieved": null,
+      "sufficient": false,
+      "decision_correct": true,
+      "elapsed_ms": 18.08,
+      "llm_calls": 3,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.049400026910007
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.0342000275850296
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.05760003114119172
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.049200025387108326
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.07080001523718238
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.039700011257082224
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.04830001853406429
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.03880000440403819
+        },
+        {
+          "operation": "query_embedding",
+          "backend": "hash",
+          "ms": 0.058699981309473515
+        },
+        {
+          "operation": "rerank",
+          "backend": "lexical",
+          "documents": 8,
+          "ms": 0.037699996028095484
+        }
+      ],
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "hops": [
+        {
+          "hop": 1,
+          "queries": [
+            "贵店承诺月球配送具体多少小时到货？"
+          ],
+          "chunk_ids": [
+            "invoice_vat_d600f1a3_00",
+            "logistics_exception_b97f65d5_00",
+            "restock_notify_8fe4d981_01",
+            "coupons_2d68704d_00",
+            "restock_notify_8fe4d981_02"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "具体 月球 贵店 配送",
+            "rationale": "demo_lexical_coverage=0.43;不是语义裁判"
+          }
+        },
+        {
+          "hop": 2,
+          "queries": [
+            "贵店承诺月球配送具体多少小时到货？",
+            "具体 月球 贵店 配送"
+          ],
+          "chunk_ids": [
+            "invoice_vat_d600f1a3_00",
+            "logistics_exception_b97f65d5_00",
+            "restock_notify_8fe4d981_01",
+            "coupons_2d68704d_00",
+            "restock_notify_8fe4d981_02",
+            "account_security_afb16737_00",
+            "membership_plus_ab644d62_01",
+            "shipping_address_7242689a_01",
+            "account_security_afb16737_02",
+            "warranty_jewelry_579c96b6_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "具体 月球 贵店 配送",
+            "rationale": "demo_lexical_coverage=0.43;不是语义裁判"
+          }
+        },
+        {
+          "hop": 3,
+          "queries": [
+            "贵店承诺月球配送具体多少小时到货？",
+            "具体 月球 贵店 配送"
+          ],
+          "chunk_ids": [
+            "invoice_vat_d600f1a3_00",
+            "logistics_exception_b97f65d5_00",
+            "restock_notify_8fe4d981_01",
+            "coupons_2d68704d_00",
+            "restock_notify_8fe4d981_02",
+            "account_security_afb16737_00",
+            "membership_plus_ab644d62_01",
+            "shipping_address_7242689a_01",
+            "account_security_afb16737_02",
+            "warranty_jewelry_579c96b6_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": false,
+            "missing_aspect": "具体 月球 贵店 配送",
+            "rationale": "demo_lexical_coverage=0.43;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "max_hops_insufficient",
+      "warnings": []
+    }
+  ],
+  "limitations": [
+    "标注由源码检查建立，可按原文人工复核；未声称独立人工审核已完成。",
+    "文档级相关集合可能包含替代依据，span coverage 更适合复合问题；本报告不测生成答案。",
+    "未开启 allow-paid 时自适应裁判为演示词面检查，不能证明真实语义自适应效果。"
+  ]
+}

@@ -1,0 +1,676 @@
+[
+  {
+    "answer": "【离线演示：以下为政策原文摘录】\n[return_policy_2f2e66b9_01] 非定制、未拆封影响二次销售的商品,签收次日起 7 个自然日内可申请无理由退货。运费由买家承担,除非商品存在质量问题。\n\n[return_policy_2f2e66b9_02] 印字、刻字、定做尺寸等定制商品不适用 7 天无理由。质量问题(破损、错发、与描述严重不符)仍可退货。\n\n[return_policy_2f2e66b9_04] 超过 7 天无理由且无法证明质量问题的,不能退货。可转保修或人工复核。\n\n[cross_border_60f6605a_02] 跨境商品不适用 7 天无理由。质量问题须在签收 7 日内申请,退货至保税仓,国际段运费平台承担。\n\n[repair_onsite_ede3d888_03] 无现货备件时最长等待 15 天。超过 15 天可选择退货退款(需设备可回收)。",
+    "session_id": "sess_6a1c99695e7f4dd3aa0d9160e5852562",
+    "trace_id": "local_model_smoke",
+    "intent": "return_exchange",
+    "complexity": "single_hop",
+    "strategy": "single",
+    "citations": [
+      {
+        "document_id": "return_policy_2f2e66b9",
+        "title": "退换货政策",
+        "chunk_id": "return_policy_2f2e66b9_01",
+        "section": "7 天无理由退货",
+        "source": "return_policy.md",
+        "excerpt": "非定制、未拆封影响二次销售的商品,签收次日起 7 个自然日内可申请无理由退货。运费由买家承担,除非商品存在质量问题。"
+      },
+      {
+        "document_id": "return_policy_2f2e66b9",
+        "title": "退换货政策",
+        "chunk_id": "return_policy_2f2e66b9_02",
+        "section": "定制商品",
+        "source": "return_policy.md",
+        "excerpt": "印字、刻字、定做尺寸等定制商品不适用 7 天无理由。质量问题(破损、错发、与描述严重不符)仍可退货。"
+      },
+      {
+        "document_id": "return_policy_2f2e66b9",
+        "title": "退换货政策",
+        "chunk_id": "return_policy_2f2e66b9_04",
+        "section": "已过时效",
+        "source": "return_policy.md",
+        "excerpt": "超过 7 天无理由且无法证明质量问题的,不能退货。可转保修或人工复核。"
+      },
+      {
+        "document_id": "cross_border_60f6605a",
+        "title": "跨境购须知",
+        "chunk_id": "cross_border_60f6605a_02",
+        "section": "售后",
+        "source": "cross_border.md",
+        "excerpt": "跨境商品不适用 7 天无理由。质量问题须在签收 7 日内申请,退货至保税仓,国际段运费平台承担。"
+      },
+      {
+        "document_id": "repair_onsite_ede3d888",
+        "title": "上门维修",
+        "chunk_id": "repair_onsite_ede3d888_03",
+        "section": "备件",
+        "source": "repair_onsite.md",
+        "excerpt": "无现货备件时最长等待 15 天。超过 15 天可选择退货退款(需设备可回收)。"
+      }
+    ],
+    "pending_action": null,
+    "refused": false,
+    "error_code": null,
+    "token_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "latency": {
+      "intent_ms": 0.14129996998235583,
+      "routing_ms": 0.026099965907633305,
+      "retrieval_ms": 1454.2768999817781,
+      "rerank_ms": 1316.4452000055462,
+      "tool_ms": 0.0,
+      "llm_ms": 0.07,
+      "total_ms": 1476.1448999634013
+    },
+    "runtime": {
+      "mode": "degraded",
+      "llm": "DemoLLMProvider",
+      "model": "demo-rules-extractive",
+      "embedding": "bge-small-zh-v1.5",
+      "embedding_model": "data/models/bge-small-zh-v1.5",
+      "reranker": "cross-encoder",
+      "reranker_model": "data/models/bge-reranker-base",
+      "vector_store": "InMemoryVectorStore",
+      "warnings": [
+        "未配置生成模型密钥，使用离线演示后备。"
+      ],
+      "business_data": "演示商店政策与模拟订单；无真实支付/退款/物流"
+    },
+    "diagnostics": {
+      "original_query": "七天无理由退货需要满足什么条件？",
+      "resolved_query": "七天无理由退货需要满足什么条件？",
+      "answer_backend": "demo-extractive",
+      "faithfulness": {
+        "supported": true,
+        "rationale": "原文摘录/工具结果直出；未使用模型裁判"
+      },
+      "rewritten_queries": [
+        "7天无理由退货需要满足什么条件？"
+      ],
+      "evidence": [
+        {
+          "chunk_id": "return_policy_2f2e66b9_01",
+          "document_id": "return_policy_2f2e66b9",
+          "title": "退换货政策",
+          "content": "非定制、未拆封影响二次销售的商品,签收次日起 7 个自然日内可申请无理由退货。运费由买家承担,除非商品存在质量问题。",
+          "score": 0.9971524477005005,
+          "rank": 1,
+          "source": "rerank",
+          "category": "return_policy",
+          "section": "7 天无理由退货",
+          "chunk_index": 1,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "return_policy.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "return_policy_2f2e66b9_02",
+          "document_id": "return_policy_2f2e66b9",
+          "title": "退换货政策",
+          "content": "印字、刻字、定做尺寸等定制商品不适用 7 天无理由。质量问题(破损、错发、与描述严重不符)仍可退货。",
+          "score": 0.9955951571464539,
+          "rank": 2,
+          "source": "rerank",
+          "category": "return_policy",
+          "section": "定制商品",
+          "chunk_index": 2,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "return_policy.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "return_policy_2f2e66b9_04",
+          "document_id": "return_policy_2f2e66b9",
+          "title": "退换货政策",
+          "content": "超过 7 天无理由且无法证明质量问题的,不能退货。可转保修或人工复核。",
+          "score": 0.9838598966598511,
+          "rank": 3,
+          "source": "rerank",
+          "category": "return_policy",
+          "section": "已过时效",
+          "chunk_index": 4,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "return_policy.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "cross_border_60f6605a_02",
+          "document_id": "cross_border_60f6605a",
+          "title": "跨境购须知",
+          "content": "跨境商品不适用 7 天无理由。质量问题须在签收 7 日内申请,退货至保税仓,国际段运费平台承担。",
+          "score": 0.9831383228302002,
+          "rank": 4,
+          "source": "rerank",
+          "category": "shipping",
+          "section": "售后",
+          "chunk_index": 2,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "cross_border.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "repair_onsite_ede3d888_03",
+          "document_id": "repair_onsite_ede3d888",
+          "title": "上门维修",
+          "content": "无现货备件时最长等待 15 天。超过 15 天可选择退货退款(需设备可回收)。",
+          "score": 0.1257346123456955,
+          "rank": 5,
+          "source": "rerank",
+          "category": "warranty",
+          "section": "备件",
+          "chunk_index": 3,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "repair_onsite.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        }
+      ],
+      "tools": [],
+      "llm_calls": 2,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "bge-small-zh-v1.5",
+          "ms": 131.14229997154325
+        },
+        {
+          "operation": "rerank",
+          "backend": "cross-encoder",
+          "documents": 5,
+          "ms": 1316.4452000055462
+        }
+      ],
+      "model_calls": [
+        {
+          "stage": "你是电商客服意图分类器。只输出 JSON，不要 Markdown，不要解释。\n标签必须是以下之一：\ngreeting, ",
+          "backend": "DemoLLMProvider",
+          "model": "demo-rules-extractive",
+          "ms": 0.05
+        },
+        {
+          "stage": "你改写电商检索查询。只输出 JSON。\n生成 1-3 条更适合检索的短查询，保留关键约束（时效、品类、是否定制、是否质量",
+          "backend": "DemoLLMProvider",
+          "model": "demo-rules-extractive",
+          "ms": 0.02
+        }
+      ],
+      "retrieval": [
+        {
+          "hop": 1,
+          "queries": [
+            "7天无理由退货需要满足什么条件？"
+          ],
+          "chunk_ids": [
+            "return_policy_2f2e66b9_01",
+            "return_policy_2f2e66b9_02",
+            "return_policy_2f2e66b9_04",
+            "cross_border_60f6605a_02",
+            "repair_onsite_ede3d888_03"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "",
+            "rationale": "demo_lexical_coverage=1.00;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "retry_count": 0
+    }
+  },
+  {
+    "answer": "【离线演示：以下为政策原文摘录】\n[return_policy_2f2e66b9_02] 印字、刻字、定做尺寸等定制商品不适用 7 天无理由。质量问题(破损、错发、与描述严重不符)仍可退货。\n\n[return_policy_2f2e66b9_01] 非定制、未拆封影响二次销售的商品,签收次日起 7 个自然日内可申请无理由退货。运费由买家承担,除非商品存在质量问题。\n\n[return_policy_2f2e66b9_03] 质量问题需在签收后 15 日内提交凭证。审核通过后运费由平台承担,退款原路返回,到账时间 1-3 个工作日。\n\n[pickup_return_d230b6de_03] 质量问题取件免费。无理由退货取件费 12 元从退款中扣除,也可自行寄出并自行承担运费。\n\n[return_policy_2f2e66b9_04] 超过 7 天无理由且无法证明质量问题的,不能退货。可转保修或人工复核。",
+    "session_id": "sess_a1ef1cc1bc9549ef8ffc0afe9b577292",
+    "trace_id": "local_model_smoke",
+    "intent": "return_exchange",
+    "complexity": "multi_hop",
+    "strategy": "multi",
+    "citations": [
+      {
+        "document_id": "return_policy_2f2e66b9",
+        "title": "退换货政策",
+        "chunk_id": "return_policy_2f2e66b9_02",
+        "section": "定制商品",
+        "source": "return_policy.md",
+        "excerpt": "印字、刻字、定做尺寸等定制商品不适用 7 天无理由。质量问题(破损、错发、与描述严重不符)仍可退货。"
+      },
+      {
+        "document_id": "return_policy_2f2e66b9",
+        "title": "退换货政策",
+        "chunk_id": "return_policy_2f2e66b9_01",
+        "section": "7 天无理由退货",
+        "source": "return_policy.md",
+        "excerpt": "非定制、未拆封影响二次销售的商品,签收次日起 7 个自然日内可申请无理由退货。运费由买家承担,除非商品存在质量问题。"
+      },
+      {
+        "document_id": "return_policy_2f2e66b9",
+        "title": "退换货政策",
+        "chunk_id": "return_policy_2f2e66b9_03",
+        "section": "质量问题",
+        "source": "return_policy.md",
+        "excerpt": "质量问题需在签收后 15 日内提交凭证。审核通过后运费由平台承担,退款原路返回,到账时间 1-3 个工作日。"
+      },
+      {
+        "document_id": "pickup_return_d230b6de",
+        "title": "上门取件",
+        "chunk_id": "pickup_return_d230b6de_03",
+        "section": "费用",
+        "source": "pickup_return.md",
+        "excerpt": "质量问题取件免费。无理由退货取件费 12 元从退款中扣除,也可自行寄出并自行承担运费。"
+      },
+      {
+        "document_id": "return_policy_2f2e66b9",
+        "title": "退换货政策",
+        "chunk_id": "return_policy_2f2e66b9_04",
+        "section": "已过时效",
+        "source": "return_policy.md",
+        "excerpt": "超过 7 天无理由且无法证明质量问题的,不能退货。可转保修或人工复核。"
+      }
+    ],
+    "pending_action": null,
+    "refused": false,
+    "error_code": null,
+    "token_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "latency": {
+      "intent_ms": 0.21140003809705377,
+      "routing_ms": 0.050799979362636805,
+      "retrieval_ms": 403.845899971202,
+      "rerank_ms": 375.5024999845773,
+      "tool_ms": 0.0,
+      "llm_ms": 0.05,
+      "total_ms": 426.98799999197945
+    },
+    "runtime": {
+      "mode": "degraded",
+      "llm": "DemoLLMProvider",
+      "model": "demo-rules-extractive",
+      "embedding": "bge-small-zh-v1.5",
+      "embedding_model": "data/models/bge-small-zh-v1.5",
+      "reranker": "cross-encoder",
+      "reranker_model": "data/models/bge-reranker-base",
+      "vector_store": "InMemoryVectorStore",
+      "warnings": [
+        "未配置生成模型密钥，使用离线演示后备。"
+      ],
+      "business_data": "演示商店政策与模拟订单；无真实支付/退款/物流"
+    },
+    "diagnostics": {
+      "original_query": "定制马克杯过了7天但是有质量问题，还能退吗，运费谁承担？",
+      "resolved_query": "定制马克杯过了7天但是有质量问题，还能退吗，运费谁承担？",
+      "answer_backend": "demo-extractive",
+      "faithfulness": {
+        "supported": true,
+        "rationale": "原文摘录/工具结果直出；未使用模型裁判"
+      },
+      "rewritten_queries": [
+        "定制马克杯过了7天但是有质量问题，还能退吗，运费谁承担？"
+      ],
+      "evidence": [
+        {
+          "chunk_id": "return_policy_2f2e66b9_02",
+          "document_id": "return_policy_2f2e66b9",
+          "title": "退换货政策",
+          "content": "印字、刻字、定做尺寸等定制商品不适用 7 天无理由。质量问题(破损、错发、与描述严重不符)仍可退货。",
+          "score": 0.9937673807144165,
+          "rank": 1,
+          "source": "rerank",
+          "category": "return_policy",
+          "section": "定制商品",
+          "chunk_index": 2,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "return_policy.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "return_policy_2f2e66b9_01",
+          "document_id": "return_policy_2f2e66b9",
+          "title": "退换货政策",
+          "content": "非定制、未拆封影响二次销售的商品,签收次日起 7 个自然日内可申请无理由退货。运费由买家承担,除非商品存在质量问题。",
+          "score": 0.9906207323074341,
+          "rank": 2,
+          "source": "rerank",
+          "category": "return_policy",
+          "section": "7 天无理由退货",
+          "chunk_index": 1,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "return_policy.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "return_policy_2f2e66b9_03",
+          "document_id": "return_policy_2f2e66b9",
+          "title": "退换货政策",
+          "content": "质量问题需在签收后 15 日内提交凭证。审核通过后运费由平台承担,退款原路返回,到账时间 1-3 个工作日。",
+          "score": 0.9793422818183899,
+          "rank": 3,
+          "source": "rerank",
+          "category": "return_policy",
+          "section": "质量问题",
+          "chunk_index": 3,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "return_policy.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "pickup_return_d230b6de_03",
+          "document_id": "pickup_return_d230b6de",
+          "title": "上门取件",
+          "content": "质量问题取件免费。无理由退货取件费 12 元从退款中扣除,也可自行寄出并自行承担运费。",
+          "score": 0.9792505502700806,
+          "rank": 4,
+          "source": "rerank",
+          "category": "shipping",
+          "section": "费用",
+          "chunk_index": 3,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "pickup_return.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "return_policy_2f2e66b9_04",
+          "document_id": "return_policy_2f2e66b9",
+          "title": "退换货政策",
+          "content": "超过 7 天无理由且无法证明质量问题的,不能退货。可转保修或人工复核。",
+          "score": 0.9778301119804382,
+          "rank": 5,
+          "source": "rerank",
+          "category": "return_policy",
+          "section": "已过时效",
+          "chunk_index": 4,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "return_policy.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        }
+      ],
+      "tools": [],
+      "llm_calls": 2,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "bge-small-zh-v1.5",
+          "ms": 19.303300010506064
+        },
+        {
+          "operation": "rerank",
+          "backend": "cross-encoder",
+          "documents": 8,
+          "ms": 375.5024999845773
+        }
+      ],
+      "model_calls": [
+        {
+          "stage": "你是电商客服意图分类器。只输出 JSON，不要 Markdown，不要解释。\n标签必须是以下之一：\ngreeting, ",
+          "backend": "DemoLLMProvider",
+          "model": "demo-rules-extractive",
+          "ms": 0.03
+        },
+        {
+          "stage": "你改写电商检索查询。只输出 JSON。\n生成 1-3 条更适合检索的短查询，保留关键约束（时效、品类、是否定制、是否质量",
+          "backend": "DemoLLMProvider",
+          "model": "demo-rules-extractive",
+          "ms": 0.02
+        }
+      ],
+      "retrieval": [
+        {
+          "hop": 1,
+          "queries": [
+            "定制马克杯过了7天但是有质量问题，还能退吗，运费谁承担？"
+          ],
+          "chunk_ids": [
+            "return_policy_2f2e66b9_02",
+            "return_policy_2f2e66b9_01",
+            "return_policy_2f2e66b9_03",
+            "pickup_return_d230b6de_03",
+            "return_policy_2f2e66b9_04"
+          ],
+          "grade": {
+            "relevant": true,
+            "sufficient": true,
+            "missing_aspect": "马克杯",
+            "rationale": "demo_lexical_coverage=0.80;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "evidence_sufficient",
+      "retry_count": 0
+    }
+  },
+  {
+    "answer": "现有证据不足或证据检查不可用，暂时无法给出可靠结论。请补充商品、时间等信息或转人工。",
+    "session_id": "sess_c9b5719c7782465fa553798afd529cc2",
+    "trace_id": "local_model_smoke",
+    "intent": "faq_policy",
+    "complexity": "single_hop",
+    "strategy": "single",
+    "citations": [],
+    "pending_action": null,
+    "refused": true,
+    "error_code": null,
+    "token_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "latency": {
+      "intent_ms": 0.17549999756738544,
+      "routing_ms": 0.13160001253709197,
+      "retrieval_ms": 257.33380002202466,
+      "rerank_ms": 240.14299997361377,
+      "tool_ms": 0.0,
+      "llm_ms": 0.07,
+      "total_ms": 278.1237000017427
+    },
+    "runtime": {
+      "mode": "degraded",
+      "llm": "DemoLLMProvider",
+      "model": "demo-rules-extractive",
+      "embedding": "bge-small-zh-v1.5",
+      "embedding_model": "data/models/bge-small-zh-v1.5",
+      "reranker": "cross-encoder",
+      "reranker_model": "data/models/bge-reranker-base",
+      "vector_store": "InMemoryVectorStore",
+      "warnings": [
+        "未配置生成模型密钥，使用离线演示后备。"
+      ],
+      "business_data": "演示商店政策与模拟订单；无真实支付/退款/物流"
+    },
+    "diagnostics": {
+      "original_query": "支持火星配送吗？",
+      "resolved_query": "支持火星配送吗？",
+      "rewritten_queries": [
+        "支持火星配送吗？"
+      ],
+      "evidence": [
+        {
+          "chunk_id": "shipping_cod_9a3c8717_01",
+          "document_id": "shipping_cod_9a3c8717",
+          "title": "货到付款",
+          "content": "仅江浙沪皖、且订单实付 ≤ 2000 元支持货到付款。定制商品、预售、跨境不支持。",
+          "score": 0.09871362149715424,
+          "rank": 1,
+          "source": "rerank",
+          "category": "shipping",
+          "section": "开通范围",
+          "chunk_index": 1,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "shipping_cod.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "gift_card_25ceb666_02",
+          "document_id": "gift_card_25ceb666",
+          "title": "礼品卡",
+          "content": "可与优惠券叠加,礼品卡优先扣减。不支持货到付款订单。",
+          "score": 0.044533032923936844,
+          "rank": 2,
+          "source": "rerank",
+          "category": "coupon",
+          "section": "使用",
+          "chunk_index": 2,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "gift_card.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "shipping_remote_104aa5d1_00",
+          "document_id": "shipping_remote_104aa5d1",
+          "title": "偏远与岛屿配送补充",
+          "content": "> 演示商店虚构政策:仅用于项目演示,不是任何真实商家的承诺。\n\n政策版本:2024-12-v3\n\n主政策:偏远附加费 8 元,包邮券不可抵。",
+          "score": 0.0021096505224704742,
+          "rank": 3,
+          "source": "rerank",
+          "category": "shipping",
+          "section": "偏远与岛屿配送补充",
+          "chunk_index": 0,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "shipping_remote.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "shipping_remote_104aa5d1_03",
+          "document_id": "shipping_remote_104aa5d1",
+          "title": "偏远与岛屿配送补充",
+          "content": "偏远地区承诺 10 日内到达(从揽收起算)。超 10 日可申请 10 元延误券 DELAY10。",
+          "score": 0.0008069509640336037,
+          "rank": 4,
+          "source": "rerank",
+          "category": "shipping",
+          "section": "时效承诺",
+          "chunk_index": 3,
+          "policy_version": "2024-12-v3",
+          "metadata": {
+            "source": "shipping_remote.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        },
+        {
+          "chunk_id": "shipping_6c5f3232_02",
+          "document_id": "shipping_6c5f3232",
+          "title": "配送说明",
+          "content": "订单实付满 59 元包邮。偏远地区加收 8 元偏远附加费,包邮券不可抵该附加费。",
+          "score": 0.0005445585702545941,
+          "rank": 5,
+          "source": "rerank",
+          "category": "shipping",
+          "section": "包邮门槛",
+          "chunk_index": 2,
+          "policy_version": "demo-v1",
+          "metadata": {
+            "source": "shipping.md",
+            "parser": "markdown",
+            "demo": "true"
+          }
+        }
+      ],
+      "tools": [],
+      "llm_calls": 3,
+      "network_attempts": 0,
+      "backend_calls": [
+        {
+          "operation": "query_embedding",
+          "backend": "bge-small-zh-v1.5",
+          "ms": 9.43480001296848
+        },
+        {
+          "operation": "rerank",
+          "backend": "cross-encoder",
+          "documents": 5,
+          "ms": 240.14299997361377
+        }
+      ],
+      "model_calls": [
+        {
+          "stage": "你是电商客服意图分类器。只输出 JSON，不要 Markdown，不要解释。\n标签必须是以下之一：\ngreeting, ",
+          "backend": "DemoLLMProvider",
+          "model": "demo-rules-extractive",
+          "ms": 0.03
+        },
+        {
+          "stage": "你是 Adaptive-RAG 复杂度分类器。只输出 JSON。\ncomplexity 取值：simple, singl",
+          "backend": "DemoLLMProvider",
+          "model": "demo-rules-extractive",
+          "ms": 0.02
+        },
+        {
+          "stage": "你改写电商检索查询。只输出 JSON。\n生成 1-3 条更适合检索的短查询，保留关键约束（时效、品类、是否定制、是否质量",
+          "backend": "DemoLLMProvider",
+          "model": "demo-rules-extractive",
+          "ms": 0.02
+        }
+      ],
+      "retrieval": [
+        {
+          "hop": 1,
+          "queries": [
+            "支持火星配送吗？"
+          ],
+          "chunk_ids": [
+            "shipping_cod_9a3c8717_01",
+            "gift_card_25ceb666_02",
+            "shipping_remote_104aa5d1_00",
+            "shipping_remote_104aa5d1_03",
+            "shipping_6c5f3232_02"
+          ],
+          "grade": {
+            "relevant": false,
+            "sufficient": false,
+            "missing_aspect": "火星 配送",
+            "rationale": "demo_lexical_coverage=0.00;不是语义裁判"
+          }
+        }
+      ],
+      "stop_reason": "single_insufficient",
+      "retry_count": 0
+    }
+  }
+]
