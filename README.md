@@ -1,10 +1,10 @@
-# Adaptive-RAG
+# ShopSupport-RAG
 
 > 面向电商客服场景的自适应 RAG 系统，支持政策问答、来源引用、多轮检索与业务工具调用。
 
-Adaptive-RAG 实现了一套完整的中文 RAG Pipeline，支持 **文档处理、Dense Retrieval、BM25、RRF 混合检索、Cross-Encoder Reranking 与离线评测**。
+ShopSupport-RAG 实现了一套完整的中文 RAG Pipeline，支持 **文档处理、Dense Retrieval、BM25、RRF 混合检索、Cross-Encoder Reranking 与离线评测**。
 
-在此基础上，项目通过 **LangGraph** 编排问题路由、查询改写、证据检查与回答校验，并接入订单、物流和售后工具。用户可以在浏览器中连续提问，查看回答来源与执行过程，对取消订单、申请退款等操作进行确认。
+在此基础上，项目进一步通过 **LangGraph** 编排问题路由、查询改写、证据检查与回答校验，并接入订单、物流和售后工具。用户可以在浏览器中连续提问，查看回答来源与执行过程，对取消订单、申请退款等操作进行确认。
 
 ---
 
